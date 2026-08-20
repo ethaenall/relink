@@ -111,8 +111,7 @@ export function RelinkSession({ seed }: { seed: Seed }) {
               </ul>
               {complete ? (
                 <p className="mt-4 text-[13px] leading-5 text-cream/70">
-                  All three marks resolve to tonight’s notation. She can start
-                  problem 2.
+                  All three marks resolve to tonight’s notation. Problem 2 is waiting.
                 </p>
               ) : null}
             </div>

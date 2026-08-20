@@ -23,7 +23,7 @@ export const lena: Seed = {
   date: "March 12",
   period: "Period 3",
   closing:
-    "The page is defined. Problems 2 and 3 are hers. Relink does not do them.",
+    "The page is defined. Problems 2 and 3 are yours. Relink does not do them.",
   lines: [
     {
       id: "hdr",
@@ -133,12 +133,12 @@ export const lena: Seed = {
       title: "What “add (b/2)²” is doing on this page",
       minutes: 3,
       whyThisPage:
-        "Tonight’s example jumps from x² + 6x = −10 to x² + 6x + 9 = −1. The +9 is not a guess. It is the one number that turns the left side into a square Lena can already write.",
+        "Tonight’s example jumps from x² + 6x = −10 to x² + 6x + 9 = −1. The +9 is not a guess. It is the one number that turns the left side into a square you can already write.",
       teaching: [
-        "She can already factor x² + 6x + 9. That trinomial is (x + 3)(x + 3), which is (x + 3)².",
+        "You can already factor x² + 6x + 9. That trinomial is (x + 3)(x + 3), which is (x + 3)².",
         "Where does 9 come from? In x² + 6x, the 6 is b. Half of 6 is 3. 3 × 3 is 9. That is (b/2)².",
         "Adding 9 to both sides is how the packet forces a perfect square on the left. The right side changes too: −10 + 9 = −1.",
-        "The rest of the example is just reading (x + 3)² = −1. The move she didn’t have was only this one.",
+        "The rest of the example is just reading (x + 3)² = −1. The only missing move on this page was this one.",
       ],
       checkPrompt:
         "On tonight’s example, b is 6. What number gets added to both sides?",
@@ -160,10 +160,10 @@ export const lena: Seed = {
       whyThisPage:
         "After the square is built, the packet writes (x + 3)² = −1, then x + 3 = ±√(−1). If square roots only live on the positive number line, this line is a wall. The algebra on this page does not stop.",
       teaching: [
-        "She already knows √9 = 3 because 3² = 9. That picture is the number line.",
+        "You already use √9 = 3 because 3² = 9. That picture is the number line.",
         "Nothing on the number line squares to −1. The equation (x + 3)² = −1 is still well-formed. The left side is a square. The right side is a negative. The page refuses to say “no solution.”",
         "So the square root is allowed to keep going. ±√(−1) is how the packet writes “the two numbers that square to −1,” without drawing them yet.",
-        "She does not need a new universe tonight. She needs permission to write that line so the next line can exist.",
+        "You do not need a new universe tonight. You need permission to write that line so the next line can exist.",
       ],
       checkPrompt:
         "(x + 3)² = −1. Does the work stop because −1 has no ordinary square root?",
@@ -186,12 +186,12 @@ export const lena: Seed = {
       title: "i is a name so the two answers can be written",
       minutes: 2,
       whyThisPage:
-        "The packet replaces √(−1) with i, then writes x = −3 ± i. If i is a mystery letter, the answer line is unreadable. It is only a name for the square root she just wrote.",
+        "The packet replaces √(−1) with i, then writes x = −3 ± i. If i is a mystery letter, the answer line is unreadable. It is only a name for the square root you just wrote.",
       teaching: [
         "i is defined as √(−1). That is the whole definition needed for this worksheet.",
         "x + 3 = ± i means two statements: x + 3 = i and x + 3 = −i.",
         "Move the 3. The two solutions on the example are x = −3 + i and x = −3 − i.",
-        "She does not have to picture those points tonight. She has to be able to write them, because tomorrow the class will start from answers that look like this.",
+        "You do not have to picture those points tonight. You have to be able to write them, because tomorrow the class will start from answers that look like this.",
       ],
       checkPrompt: "x + 3 = ± i means the two solutions are:",
       choices: [
