@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #12110f;
+  --foreground: #e8e0d2;
+}
+
+html,
+body {
+  background: #12110f;
+  color: #e8e0d2;
+}
+
+body {
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: #9a3412;
+  color: #f3ecdf;
+}
+
+.font-paper {
+  font-family: var(--font-paper), Georgia, ui-serif, serif;
+}
+
+.undef-mark {
+  color: #b42318;
+  background: linear-gradient(transparent 70%, rgba(180, 35, 24, 0.18) 70%);
+  box-shadow: 0 2px 0 0 #b42318;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.undef-mark:hover,
+.undef-mark:focus-visible {
+  background: rgba(180, 35, 24, 0.12);
+  outline: 2px solid #b42318;
+  outline-offset: 3px;
+}
+
+.ok-mark {
+  color: #1f5c4d;
+  box-shadow: 0 2px 0 0 #1f5c4d;
+  font-weight: 600;
+}
+
+.paper-sheet {
+  background: #f3ecdf;
+  color: #1c1915;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 31px,
+    rgba(28, 25, 21, 0.05) 31px,
+    rgba(28, 25, 21, 0.05) 32px
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
