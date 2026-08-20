@@ -4,10 +4,13 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-room text-cream">
-      <header className="flex items-center justify-between px-5 py-5 sm:px-8">
-        <p className="font-mono text-[12px] uppercase tracking-[0.22em]">Relink</p>
-        <nav className="flex gap-5 font-mono text-[12px] uppercase tracking-[0.14em] text-cream/60">
+    <main className="desk relative text-cream">
+      <header className="relative z-10 flex items-center justify-between px-5 py-5 sm:px-10">
+        <p className="font-mono text-[11px] uppercase tracking-[0.28em]">Relink</p>
+        <p className="hidden font-mono text-[11px] text-cream/45 sm:block">
+          Mar 12 · 11:14 PM · first night back
+        </p>
+        <nav className="flex gap-5 font-mono text-[11px] uppercase tracking-[0.14em] text-cream/50">
           <Link href="/one-pager" className="hover:text-cream">
             One pager
           </Link>
@@ -17,61 +20,68 @@ export default function Home() {
         </nav>
       </header>
 
-      <section className="mx-auto grid max-w-6xl items-start gap-10 px-5 pb-20 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.9fr)] sm:px-8">
-        <div>
-          <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-undef">
-            3 undefined references
-          </p>
-          <div className="mt-4 origin-top scale-[0.98]">
-            <Worksheet seed={lena} resolved={new Set()} />
-          </div>
-        </div>
+      <section className="relative z-10 mx-auto max-w-6xl px-5 pb-24 sm:px-10">
+        <p className="diag text-[13px] leading-6 text-[#e8a598] sm:text-[15px]">
+          <span className="text-undef">error[E0425]</span>
+          {": 3 undefined references"}
+          {"\n"}
+          {"  --> Algebra2/4.3.rs: Lena Park, 16"}
+          {"\n"}
+          {"   |"}
+        </p>
+        <h1 className="font-paper mt-5 max-w-3xl text-[42px] leading-[0.98] sm:text-[68px]">
+          Tonight’s page has undefined references.
+        </h1>
 
-        <div className="lg:pt-10">
-          <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-cream/50">
-            The person
-          </p>
-          <h1 className="font-paper mt-3 text-[40px] leading-[1.05] sm:text-[52px]">
-            Tonight’s page has undefined references.
-          </h1>
-          <div className="mt-6 space-y-4 text-[15px] leading-7 text-cream/80">
-            <p>
-              Lena is 16. She missed nine instructional days of Algebra 2 with
-              the flu. This is the first night back. The worksheet in front of
-              her was written for someone who was in the room.
+        <div className="mt-10 grid items-start gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(280px,0.75fr)]">
+          <Worksheet seed={lena} resolved={new Set()} />
+
+          <aside className="lg:sticky lg:top-8">
+            <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-cream/40">
+              cannot find in this scope
             </p>
-            <p>
-              She can still factor x² + 6x + 9. She can still move a term. She
-              cannot treat <span className="text-cream">(b/2)²</span>,{" "}
-              <span className="text-cream">√(−1)</span>, or{" "}
-              <span className="text-cream">i</span> as given. Every resource she
-              tried either restarts the unit or finishes the homework for her.
-              Both leave her locked out of class tomorrow.
+            <ul className="mt-4 font-mono text-[13px] leading-7 text-cream/80">
+              <li>
+                <span className="text-undef">×</span> (b/2)²
+                <span className="text-cream/35"> — line after the move</span>
+              </li>
+              <li>
+                <span className="text-undef">×</span> √(−1)
+                <span className="text-cream/35"> — after the square</span>
+              </li>
+              <li>
+                <span className="text-undef">×</span> i
+                <span className="text-cream/35"> — last two lines</span>
+              </li>
+            </ul>
+            <p className="mt-8 text-[15px] leading-7 text-cream/80">
+              Nine days of flu. She can still factor x² + 6x + 9. This worksheet
+              was written for someone who was in the room. Khan restarts the
+              unit. A chatbot finishes the homework. Both leave her locked out
+              of class tomorrow.
             </p>
-            <p>
-              Relink treats the page the way a compiler treats a missing import:
-              name the undefined marks, resolve only those, return her to the
-              same page. It never says she should already know this.
+            <p className="mt-4 text-[15px] leading-7 text-cream/80">
+              Relink is a linker. Name the missing imports. Resolve only those.
+              Return her to the same page.
             </p>
-          </div>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Link
               href="/lena"
-              className="inline-flex min-h-11 items-center justify-center bg-paper px-5 text-[14px] text-ink"
+              className="mt-8 inline-flex min-h-12 items-center bg-paper px-6 font-paper text-[18px] italic text-ink"
             >
-              Sit with Lena’s worksheet
+              Sit with tonight’s page →
             </Link>
-            <Link
-              href="/paste"
-              className="inline-flex min-h-11 items-center justify-center border border-cream/20 px-5 text-[14px] text-cream/80 hover:border-cream/50"
-            >
-              Paste another page
-            </Link>
-          </div>
-          <p className="mt-4 font-mono text-[11px] leading-5 text-cream/45">
-            No account. No chat. The judge path is fully local — the three
-            blockers are real pedagogy, not a prompt wrapper.
-          </p>
+            <p className="mt-3 font-mono text-[11px] text-cream/40">
+              No account. No chat. No model on this path.
+            </p>
+            <p className="mt-6">
+              <Link
+                href="/paste"
+                className="font-mono text-[11px] uppercase tracking-[0.14em] text-cream/35 hover:text-cream/70"
+              >
+                Or paste another page
+              </Link>
+            </p>
+          </aside>
         </div>
       </section>
     </main>

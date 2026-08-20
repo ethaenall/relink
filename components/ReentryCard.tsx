@@ -38,7 +38,7 @@ export function ReentryCard({
       role="dialog"
       aria-modal="true"
       aria-labelledby="reentry-title"
-      className="flex h-full flex-col bg-paper text-ink"
+      className="flex h-full flex-col bg-paper text-ink paper-sheet"
     >
       <div className="flex items-start justify-between gap-4 border-b border-rule px-5 py-4">
         <div>

@@ -34,45 +34,40 @@ export function RelinkSession({ seed }: { seed: Seed }) {
   }, [complete, doneAt]);
 
   const elapsed = formatElapsed((doneAt ?? now) - startedAt);
-
   const resolvedView = useMemo(() => new Set(resolved), [resolved]);
 
   return (
-    <div className="min-h-screen bg-room text-cream">
-      <header className="flex items-center justify-between gap-4 px-4 py-4 sm:px-6">
-        <Link href="/" className="font-mono text-[12px] uppercase tracking-[0.2em]">
+    <div className="desk relative text-cream">
+      <header className="relative z-10 flex items-center justify-between gap-4 px-4 py-5 sm:px-8">
+        <Link href="/" className="font-mono text-[11px] uppercase tracking-[0.28em]">
           Relink
         </Link>
-        <p className="font-mono text-[12px] text-cream/70">
+        <p className="diag text-[12px] text-cream/70">
           {complete
-            ? `defined · ${elapsed}`
-            : `${remaining.length} undefined · ${elapsed}`}
+            ? `note: all references defined  (${elapsed})`
+            : `error[E0425]: ${remaining.length} undefined  (${elapsed})`}
         </p>
       </header>
 
-      <div className="mx-auto grid max-w-6xl gap-6 px-4 pb-16 lg:grid-cols-[minmax(0,1fr)_320px] sm:px-6">
+      <div className="relative z-10 mx-auto grid max-w-6xl gap-8 px-4 pb-20 lg:grid-cols-[minmax(0,1fr)_340px] sm:px-8">
         <div>
           <Worksheet
             seed={seed}
             resolved={resolvedView}
             interactive
             onOpen={setOpenId}
+            highlightId={openId}
           />
-          {complete ? (
-            <p className="mt-4 max-w-prose text-[14px] leading-6 text-cream/80">
-              {seed.closing}
-            </p>
-          ) : (
-            <p className="mt-4 max-w-prose text-[13px] leading-6 text-cream/55">
-              Rust marks are undefined on this page. Open one. Relink will not
-              restart the unit or finish the homework.
-            </p>
-          )}
+          <p className="mt-5 max-w-xl text-[14px] leading-6 text-cream/55">
+            {complete
+              ? seed.closing
+              : "Rust waves are undefined on this page. Open one. Relink will not restart the unit or finish the homework."}
+          </p>
         </div>
 
-        <aside className="lg:sticky lg:top-4 h-fit">
+        <aside className="lg:sticky lg:top-6 h-fit">
           {open ? (
-            <div className="min-h-[480px] overflow-hidden border border-cream/10">
+            <div className="min-h-[520px] overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.45)]">
               <ReentryCard
                 blocker={open}
                 onClose={() => setOpenId(null)}
@@ -83,11 +78,11 @@ export function RelinkSession({ seed }: { seed: Seed }) {
               />
             </div>
           ) : (
-            <div className="border border-cream/10 bg-room-2 p-5">
-              <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-cream/50">
-                Undefined references
+            <div className="paper-sheet paper-in p-5 text-ink">
+              <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-pen">
+                rustc · tonight
               </p>
-              <ul className="mt-4 space-y-2">
+              <ul className="mt-4 space-y-1">
                 {seed.blockers.map((b) => {
                   const ok = resolved.has(b.id);
                   return (
@@ -95,25 +90,30 @@ export function RelinkSession({ seed }: { seed: Seed }) {
                       <button
                         type="button"
                         onClick={() => setOpenId(b.id)}
-                        className="flex min-h-11 w-full items-baseline justify-between gap-3 border border-cream/10 px-3 py-2 text-left hover:border-cream/30"
+                        className="flex min-h-11 w-full items-baseline justify-between gap-3 px-1 py-2 text-left hover:bg-black/[0.04]"
                       >
                         <span className="font-mono text-[13px]">
                           <span className={ok ? "text-resolved" : "text-undef"}>
-                            {ok ? "✓" : "×"}
+                            {ok ? "ok" : "error"}
                           </span>{" "}
                           {b.token}
                         </span>
-                        <span className="text-[12px] text-cream/50">{b.where}</span>
+                        <span className="text-[11px] text-ink-soft">{b.where}</span>
                       </button>
                     </li>
                   );
                 })}
               </ul>
               {complete ? (
-                <p className="mt-4 text-[13px] leading-5 text-cream/70">
-                  All three marks resolve to tonight’s notation. Problem 2 is waiting.
+                <p className="mt-4 font-paper text-[15px] italic leading-5 text-resolved">
+                  All three marks resolve to tonight’s notation. Problem 2 is
+                  waiting.
                 </p>
-              ) : null}
+              ) : (
+                <p className="mt-4 font-mono text-[11px] leading-5 text-ink-soft">
+                  help: open an error. teach only that import. return to the page.
+                </p>
+              )}
             </div>
           )}
         </aside>

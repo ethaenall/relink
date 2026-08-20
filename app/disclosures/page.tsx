@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Disclosures() {
   return (
-    <main className="min-h-screen bg-room text-cream">
+    <main className="desk relative text-cream">
       <header className="px-5 py-5 sm:px-8">
         <Link href="/" className="font-mono text-[12px] uppercase tracking-[0.2em]">
           Relink

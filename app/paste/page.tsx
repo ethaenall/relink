@@ -44,7 +44,7 @@ export default function PastePage() {
   }
 
   return (
-    <main className="min-h-screen bg-room text-cream">
+    <main className="desk relative text-cream">
       <header className="flex items-center justify-between px-5 py-5 sm:px-8">
         <Link href="/" className="font-mono text-[12px] uppercase tracking-[0.2em]">
           Relink

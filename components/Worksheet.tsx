@@ -44,33 +44,43 @@ function Line({
   interactive,
   onOpen,
   blockers,
+  highlightId,
 }: {
   line: WorksheetLine;
   resolved: Set<string>;
   interactive: boolean;
   onOpen?: (id: string) => void;
   blockers: Seed["blockers"];
+  highlightId?: string | null;
 }) {
   const margin =
     line.marginFor && resolved.has(line.marginFor)
       ? blockers.find((b) => b.id === line.marginFor)?.marginNote
       : null;
 
+  const hot =
+    highlightId &&
+    line.parts.some(
+      (p) => "blockerId" in p && p.blockerId === highlightId,
+    );
+
   const base =
     line.kind === "meta"
       ? "text-[11px] uppercase tracking-[0.14em] text-ink-soft"
       : line.kind === "title"
-        ? "font-paper text-[22px] sm:text-[26px] font-medium leading-tight"
+        ? "font-paper text-[22px] sm:text-[28px] font-medium leading-tight"
         : line.kind === "section"
-          ? "mt-4 text-[12px] uppercase tracking-[0.16em] text-pen"
+          ? "mt-5 text-[11px] uppercase tracking-[0.18em] text-pen"
           : line.kind === "math"
-            ? "font-paper text-[18px] sm:text-[20px] italic leading-8 pl-4"
+            ? "font-paper text-[19px] sm:text-[22px] italic leading-8 pl-1"
             : line.kind === "task"
-              ? "font-paper text-[18px] sm:text-[20px] leading-8 pt-2"
+              ? "font-paper text-[19px] sm:text-[22px] leading-8 pt-2"
               : "text-[14px] leading-6 text-ink-soft";
 
   return (
-    <div className="relative min-h-[32px] pr-2 md:pr-56">
+    <div
+      className={`relative min-h-[32px] pl-8 pr-2 md:pr-56 ${hot ? "line-hot" : ""}`}
+    >
       <p className={base}>
         {line.parts.map((part, i) => (
           <Part
@@ -82,11 +92,7 @@ function Line({
           />
         ))}
       </p>
-      {margin ? (
-        <p className="mt-1 text-[12px] leading-4 text-resolved md:absolute md:right-0 md:top-0 md:mt-0 md:w-52 md:text-right md:leading-snug">
-          {margin}
-        </p>
-      ) : null}
+      {margin ? <p className="margin-ink mt-1 text-[13px] leading-4 md:absolute md:right-2 md:top-0 md:mt-0 md:w-52 md:text-right md:leading-snug">{margin}</p> : null}
     </div>
   );
 }
@@ -96,14 +102,16 @@ export function Worksheet({
   resolved,
   interactive = false,
   onOpen,
+  highlightId,
 }: {
   seed: Seed;
   resolved: Set<string>;
   interactive?: boolean;
   onOpen?: (id: string) => void;
+  highlightId?: string | null;
 }) {
   return (
-    <article className="paper-sheet px-6 py-8 sm:px-10 sm:py-10 text-ink">
+    <article className="paper-sheet paper-in px-6 py-9 sm:px-12 sm:py-12 text-ink">
       <div className="space-y-2">
         {seed.lines.map((line) => (
           <Line
@@ -113,6 +121,7 @@ export function Worksheet({
             interactive={interactive}
             onOpen={onOpen}
             blockers={seed.blockers}
+            highlightId={highlightId}
           />
         ))}
       </div>
