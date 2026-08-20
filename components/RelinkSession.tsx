@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import Link from "next/link";
 import type { Seed } from "@/lib/types";
 import { Worksheet } from "./Worksheet";
 import { ReentryCard } from "./ReentryCard";
@@ -39,9 +40,9 @@ export function RelinkSession({ seed }: { seed: Seed }) {
   return (
     <div className="min-h-screen bg-room text-cream">
       <header className="flex items-center justify-between gap-4 px-4 py-4 sm:px-6">
-        <a href="/" className="font-mono text-[12px] uppercase tracking-[0.2em]">
+        <Link href="/" className="font-mono text-[12px] uppercase tracking-[0.2em]">
           Relink
-        </a>
+        </Link>
         <p className="font-mono text-[12px] text-cream/70">
           {complete
             ? `defined · ${elapsed}`
