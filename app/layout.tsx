@@ -20,6 +20,7 @@ const paper = Newsreader({
   variable: "--font-paper",
   style: ["normal", "italic"],
   weight: ["400", "500", "600", "700"],
+  adjustFontFallback: false,
 });
 
 export const metadata: Metadata = {
