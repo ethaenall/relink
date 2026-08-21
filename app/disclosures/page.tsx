@@ -27,12 +27,14 @@ export default function Disclosures() {
             models.
           </li>
           <li>
-            Featherless AI (OpenAI-compatible API) — optional runtime for
-            /paste only. Default model:{" "}
+            Featherless AI (OpenAI-compatible API) — optional runtime for a Node
+            host only. Default model:{" "}
             <code className="font-mono text-[13px]">
               meta-llama/Meta-Llama-3.1-8B-Instruct
             </code>
-            . The judge path /lena does not call a model.
+            . The GitHub Pages demo strips{" "}
+            <code className="font-mono text-[13px]">/api/diagnose</code>. The
+            judge path /lena does not call a model.
           </li>
         </ul>
 
@@ -43,6 +45,7 @@ export default function Disclosures() {
           <li>
             None. Lena’s worksheet, blockers, and checks were written for this
             prototype. No scraped homework banks, no student data, no fine-tunes.
+            Lena is a composite informed by being the user.
           </li>
         </ul>
 
@@ -51,14 +54,17 @@ export default function Disclosures() {
         </h2>
         <ul className="mt-3 list-disc space-y-2 pl-5">
           <li>
-            Fully built: Lena’s named-person re-entry on Worksheet 4.3 — diagnosis,
-            three shame-free cards, checks, return-to-page, one-pager.
+            Fully built: Lena’s linker on Worksheet 4.3 — tap a rust mark,
+            apply-to-problem-2, write the next line on the paper, one-pager.
           </li>
           <li>
-            Fully built, network-dependent: /paste via Featherless when
-            FEATHERLESS_API_KEY is set.
+            /paste on GitHub Pages: static token highlighter only. Featherless
+            lives in source at app/api/diagnose and is stripped at Pages build.
+            Not the judge path.
           </li>
-          <li>Not mocked: there is no fake chat, no fake scores, no placeholder pedagogy.</li>
+          <li>
+            Not in scope: chat, gradebook, second named person, LMS.
+          </li>
         </ul>
       </article>
     </main>

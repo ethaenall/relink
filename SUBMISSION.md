@@ -27,9 +27,13 @@ Also reachable from the demo header.
 
 **Relink** — tonight’s page has undefined references.
 
-Lena Park, 16, missed nine days of Algebra 2 with the flu. First night back, Worksheet 4.3 treats `(b/2)²`, `√(−1)`, and `i` as already in her hands. Khan restarts the unit. ChatGPT finishes the homework. Both leave her locked out of class tomorrow.
+Lena Park, 16, missed nine days of Algebra 2. Worksheet 4.3 treats `(b/2)²`, `√(−1)`, and `i` as already in her hands. You tap the rust wave. Relink names only those imports, makes you use the move on problem 2, and then you write the next line. It never does the homework.
 
-Relink names only those marks, teaches them in this page’s notation, and returns her to the same worksheet. Problems 2 and 3 stay hers. No chat. No account.
+Built by a student who has sat in class unable to parse the board. No account. No chat. No model on the judge path.
+
+Live demo: https://ethaenall.github.io/relink/  
+One pager: https://ethaenall.github.io/relink/one-pager/  
+Repo: https://github.com/ethaenall/relink
 
 ---
 

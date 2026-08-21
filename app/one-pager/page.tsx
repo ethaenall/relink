@@ -16,6 +16,9 @@ export default function OnePager() {
             STAMPED · NIGHT 1 BACK
           </p>
         </div>
+        <p className="mt-3 font-mono text-[11px] leading-5 text-ink-soft">
+          built by a student who has sat locked out of a board
+        </p>
         <h1 className="font-paper mt-4 text-[44px] leading-[0.98] sm:text-[64px]">
           Lena is not starting over.
           <span className="mt-2 block text-pen">
@@ -48,8 +51,8 @@ export default function OnePager() {
               What changed
             </p>
             <p className="mt-2 text-[15px] leading-6">
-              Twelve minutes. Three marks defined in this page’s notation.
-              Problems 2 and 3 still hers. She can sit down tomorrow.
+              Twelve minutes. Three marks defined. She writes the first move of
+              problem 2. Relink does not.
             </p>
           </div>
         </section>
@@ -59,24 +62,34 @@ export default function OnePager() {
             <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-undef">
               Before · cannot find in this scope
             </p>
-            <div className="mt-3">
+            <div className="mt-3 [&_.paper-sheet]:px-4 [&_.paper-sheet]:py-6">
               <Worksheet seed={lena} resolved={new Set()} />
             </div>
           </div>
           <div>
             <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-resolved">
-              After · same page, imports resolved
+              After · same page, she wrote the next line
             </p>
-            <div className="mt-3">
-              <Worksheet seed={lena} resolved={resolved} />
+            <div className="mt-3 [&_.paper-sheet]:px-4 [&_.paper-sheet]:py-6">
+              <Worksheet
+                seed={lena}
+                resolved={resolved}
+                footer={
+                  <div className="relative min-h-[32px] pl-8 pr-2">
+                    <p className="lena-hand font-paper text-[19px] sm:text-[22px] italic leading-8">
+                      x² + 8x = −20
+                    </p>
+                  </div>
+                }
+              />
             </div>
           </div>
         </section>
 
         <ol className="mt-12 max-w-3xl space-y-3 font-paper text-[18px] leading-7">
-          <li>01 — Name only the primitives this page uses that she cannot treat as given.</li>
-          <li>02 — Two to three minutes, on this example. Not Chapter 4. Not the answers to 2 and 3.</li>
-          <li>03 — One check. Margin ink. Return to the same worksheet.</li>
+          <li>01 — Tap the rust wave.</li>
+          <li>02 — Apply the import on problem 2.</li>
+          <li>03 — Write the next line. Relink refuses to write it.</li>
         </ol>
 
         <p className="mt-10 font-mono text-[13px] leading-6">

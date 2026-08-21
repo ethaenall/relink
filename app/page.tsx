@@ -73,12 +73,15 @@ export default function Home() {
             <p className="mt-3 font-mono text-[11px] text-cream/40">
               No account. No chat. No model on this path.
             </p>
+            <p className="mt-6 font-mono text-[11px] leading-5 text-cream/45">
+              built by a student who has sat in class unable to parse the board.
+            </p>
             <p className="mt-6">
               <Link
                 href="/paste"
                 className="font-mono text-[11px] uppercase tracking-[0.14em] text-cream/35 hover:text-cream/70"
               >
-                Or paste another page
+                Paste another page (static — no model)
               </Link>
             </p>
           </aside>
