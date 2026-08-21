@@ -15,6 +15,19 @@ export type Choice = {
   correct: boolean;
 };
 
+export type ApplyCheck = {
+  problemLabel: string;
+  prompt: string;
+  choices: Choice[];
+  ifWrong: string;
+};
+
+export type NextLine = {
+  prompt: string;
+  accept: string[];
+  rejectHint: string;
+};
+
 export type Blocker = {
   id: string;
   token: string;
@@ -23,9 +36,7 @@ export type Blocker = {
   minutes: number;
   whyThisPage: string;
   teaching: string[];
-  checkPrompt: string;
-  choices: Choice[];
-  ifWrong: string;
+  apply: ApplyCheck;
   marginNote: string;
 };
 
@@ -49,4 +60,5 @@ export type Seed = {
   lines: WorksheetLine[];
   blockers: Blocker[];
   closing: string;
+  nextLine: NextLine;
 };
