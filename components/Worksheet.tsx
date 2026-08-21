@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import type { InlinePart, Seed, WorksheetLine } from "@/lib/types";
 
 function Part({
@@ -103,12 +104,14 @@ export function Worksheet({
   interactive = false,
   onOpen,
   highlightId,
+  footer,
 }: {
   seed: Seed;
   resolved: Set<string>;
   interactive?: boolean;
   onOpen?: (id: string) => void;
   highlightId?: string | null;
+  footer?: ReactNode;
 }) {
   return (
     <article className="paper-sheet paper-in px-6 py-9 sm:px-12 sm:py-12 text-ink">
@@ -124,6 +127,7 @@ export function Worksheet({
             highlightId={highlightId}
           />
         ))}
+        {footer}
       </div>
     </article>
   );

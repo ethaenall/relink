@@ -5,6 +5,7 @@ import Link from "next/link";
 import type { Seed } from "@/lib/types";
 import { Worksheet } from "./Worksheet";
 import { ReentryCard } from "./ReentryCard";
+import { NextLine } from "./NextLine";
 
 function formatElapsed(ms: number) {
   const s = Math.max(0, Math.floor(ms / 1000));
@@ -50,22 +51,7 @@ export function RelinkSession({ seed }: { seed: Seed }) {
       </header>
 
       <div className="relative z-10 mx-auto grid max-w-6xl gap-8 px-4 pb-20 lg:grid-cols-[minmax(0,1fr)_340px] sm:px-8">
-        <div>
-          <Worksheet
-            seed={seed}
-            resolved={resolvedView}
-            interactive
-            onOpen={setOpenId}
-            highlightId={openId}
-          />
-          <p className="mt-5 max-w-xl text-[14px] leading-6 text-cream/55">
-            {complete
-              ? seed.closing
-              : "Rust waves are undefined on this page. Open one. Relink will not restart the unit or finish the homework."}
-          </p>
-        </div>
-
-        <aside className="lg:sticky lg:top-6 h-fit">
+        <aside className="order-1 lg:order-2 lg:sticky lg:top-6 h-fit">
           {open ? (
             <div className="min-h-[520px] overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.45)]">
               <ReentryCard
@@ -107,7 +93,7 @@ export function RelinkSession({ seed }: { seed: Seed }) {
               {complete ? (
                 <p className="mt-4 font-paper text-[15px] italic leading-5 text-resolved">
                   All three marks resolve to tonight’s notation. Problem 2 is
-                  waiting.
+                  waiting on the page.
                 </p>
               ) : (
                 <p className="mt-4 font-mono text-[11px] leading-5 text-ink-soft">
@@ -117,6 +103,27 @@ export function RelinkSession({ seed }: { seed: Seed }) {
             </div>
           )}
         </aside>
+
+        <div className="order-2 lg:order-1">
+          <Worksheet
+            seed={seed}
+            resolved={resolvedView}
+            interactive
+            onOpen={setOpenId}
+            highlightId={openId}
+            footer={
+              complete ? (
+                <NextLine spec={seed.nextLine} closing={seed.closing} />
+              ) : null
+            }
+          />
+          {complete ? null : (
+            <p className="mt-5 max-w-xl text-[14px] leading-6 text-cream/55">
+              Rust waves are undefined on this page. Open one. Relink will not
+              restart the unit or finish the homework.
+            </p>
+          )}
+        </div>
       </div>
     </div>
   );

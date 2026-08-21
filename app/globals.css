@@ -178,6 +178,12 @@ body {
   animation: paper-in 0.7s ease both;
 }
 
+.lena-hand {
+  font-family: var(--font-paper), Georgia, ui-serif, serif;
+  font-style: italic;
+  color: #1e3a8a;
+}
+
 .line-hot {
   background: rgba(159, 29, 20, 0.07);
   box-shadow: inset 3px 0 0 #9f1d14;
