@@ -23,7 +23,19 @@ export const lena: Seed = {
   date: "March 12",
   period: "Period 3",
   closing:
-    "The page is defined. Problems 2 and 3 are yours. Relink does not do them.",
+    "The page is defined. Write the first move of problem 2. Relink will not write it.",
+  nextLine: {
+    prompt: "Problem 2 is waiting. Write the first move (get x² + 8x alone).",
+    accept: [
+      "x^2 + 8x = -20",
+      "x² + 8x = −20",
+      "x² + 8x = -20",
+      "x^2 + 8x = −20",
+      "x^2+8x=-20",
+      "x²+8x=−20",
+    ],
+    rejectHint: "That is not the first move. Get x² + 8x alone.",
+  },
   lines: [
     {
       id: "hdr",
@@ -135,20 +147,20 @@ export const lena: Seed = {
       whyThisPage:
         "Tonight’s example jumps from x² + 6x = −10 to x² + 6x + 9 = −1. The +9 is not a guess. It is the one number that turns the left side into a square you can already write.",
       teaching: [
-        "You can already factor x² + 6x + 9. That trinomial is (x + 3)(x + 3), which is (x + 3)².",
-        "Where does 9 come from? In x² + 6x, the 6 is b. Half of 6 is 3. 3 × 3 is 9. That is (b/2)².",
-        "Adding 9 to both sides is how the packet forces a perfect square on the left. The right side changes too: −10 + 9 = −1.",
-        "The rest of the example is just reading (x + 3)² = −1. The only missing move on this page was this one.",
+        "You can already factor x² + 6x + 9. That is (x + 3)². The 9 is (b/2)²: half of 6 is 3, 3 × 3 is 9.",
+        "Adding that square to both sides is the only missing move on this example. Problem 2 is the same move with a different b.",
       ],
-      checkPrompt:
-        "On tonight’s example, b is 6. What number gets added to both sides?",
-      choices: [
-        { id: "a", label: "6", correct: false },
-        { id: "b", label: "9", correct: true },
-        { id: "c", label: "3", correct: false },
-        { id: "d", label: "36", correct: false },
-      ],
-      ifWrong: "Half of 6 is 3. Then square that 3. That product is the addend.",
+      apply: {
+        problemLabel: "2.  x² + 8x + 20 = 0",
+        prompt: "On problem 2, b is 8. What number gets added to both sides?",
+        choices: [
+          { id: "a", label: "8", correct: false },
+          { id: "b", label: "16", correct: true },
+          { id: "c", label: "4", correct: false },
+          { id: "d", label: "64", correct: false },
+        ],
+        ifWrong: "Half of 8 is 4. Square that 4.",
+      },
       marginNote: "half of 6, then square → 9. Makes (x + 3)².",
     },
     {
@@ -160,23 +172,23 @@ export const lena: Seed = {
       whyThisPage:
         "After the square is built, the packet writes (x + 3)² = −1, then x + 3 = ±√(−1). If square roots only live on the positive number line, this line is a wall. The algebra on this page does not stop.",
       teaching: [
-        "You already use √9 = 3 because 3² = 9. That picture is the number line.",
-        "Nothing on the number line squares to −1. The equation (x + 3)² = −1 is still well-formed. The left side is a square. The right side is a negative. The page refuses to say “no solution.”",
-        "So the square root is allowed to keep going. ±√(−1) is how the packet writes “the two numbers that square to −1,” without drawing them yet.",
-        "You do not need a new universe tonight. You need permission to write that line so the next line can exist.",
+        "Nothing on the number line squares to −1. The equation (x + 3)² = −1 is still well-formed. The packet does not write “no solution.”",
+        "±√(−1) is permission to keep writing so the next line can exist. Problem 2 will hit the same wall with −4.",
       ],
-      checkPrompt:
-        "(x + 3)² = −1. Does the work stop because −1 has no ordinary square root?",
-      choices: [
-        { id: "a", label: "Yes. No solution.", correct: false },
-        {
-          id: "b",
-          label: "No. Write ±√(−1) and keep going.",
-          correct: true,
-        },
-      ],
-      ifWrong:
-        "The packet’s next line exists. The algebra continues; only the number-line picture paused.",
+      apply: {
+        problemLabel: "2.  after (x + 4)² = −4",
+        prompt: "After (x + 4)² = −4, does the work stop?",
+        choices: [
+          { id: "a", label: "Yes. No solution.", correct: false },
+          {
+            id: "b",
+            label: "No. Write ±√(−4) and continue.",
+            correct: true,
+          },
+        ],
+        ifWrong:
+          "The packet’s next line exists. The algebra continues; only the number-line picture paused.",
+      },
       marginNote: "the square may equal a negative; write ±√(−1) and continue.",
     },
     {
@@ -189,17 +201,18 @@ export const lena: Seed = {
         "The packet replaces √(−1) with i, then writes x = −3 ± i. If i is a mystery letter, the answer line is unreadable. It is only a name for the square root you just wrote.",
       teaching: [
         "i is defined as √(−1). That is the whole definition needed for this worksheet.",
-        "x + 3 = ± i means two statements: x + 3 = i and x + 3 = −i.",
-        "Move the 3. The two solutions on the example are x = −3 + i and x = −3 − i.",
-        "You do not have to picture those points tonight. You have to be able to write them, because tomorrow the class will start from answers that look like this.",
+        "x + 3 = ± i means two answers: x = −3 + i and x = −3 − i. Problem 2 will look the same with 4 and 2i.",
       ],
-      checkPrompt: "x + 3 = ± i means the two solutions are:",
-      choices: [
-        { id: "a", label: "x = 3 + i  and  x = 3 − i", correct: false },
-        { id: "b", label: "x = −3 + i  and  x = −3 − i", correct: true },
-        { id: "c", label: "x = i only", correct: false },
-      ],
-      ifWrong: "Subtract 3 from both sides of x + 3 = i and of x + 3 = −i.",
+      apply: {
+        problemLabel: "2.  x + 4 = ± 2i",
+        prompt: "The two answers on problem 2 are:",
+        choices: [
+          { id: "a", label: "−4 ± i", correct: false },
+          { id: "b", label: "−4 ± 2i", correct: true },
+          { id: "c", label: "4 ± 2i", correct: false },
+        ],
+        ifWrong: "From x + 4 = ± 2i, subtract 4. √(−4) = 2i, not i.",
+      },
       marginNote: "i names √(−1). Two answers: −3 + i and −3 − i.",
     },
   ],

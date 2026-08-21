@@ -17,7 +17,7 @@ const banned = [
 ];
 
 const file = fs.readFileSync(path.join(__dirname, "../lib/lena.ts"), "utf8");
-const fields = ["whyThisPage", "teaching", "checkPrompt", "ifWrong", "marginNote"];
+const fields = ["whyThisPage", "teaching", "apply", "ifWrong", "marginNote"];
 const hits = [];
 
 for (const phrase of banned) {
