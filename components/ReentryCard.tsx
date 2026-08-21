@@ -23,7 +23,7 @@ export function ReentryCard({
   }, [blocker.id]);
 
   function submit(id: string) {
-    const choice = blocker.choices.find((c) => c.id === id);
+    const choice = blocker.apply.choices.find((c) => c.id === id);
     if (!choice) return;
     setPicked(id);
     if (choice.correct) {
@@ -43,7 +43,7 @@ export function ReentryCard({
       <div className="flex items-start justify-between gap-4 border-b border-rule px-5 py-4">
         <div>
           <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-pen">
-            Re-entry · {blocker.minutes} min · {blocker.token}
+            rustc --explain · {blocker.minutes} min · {blocker.token}
           </p>
           <h2
             id="reentry-title"
@@ -78,9 +78,15 @@ export function ReentryCard({
         </ol>
 
         <div className="border-t border-rule pt-4">
-          <p className="font-medium text-[14px] leading-6">{blocker.checkPrompt}</p>
+          <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-pen">
+            apply · problem 2
+          </p>
+          <p className="font-paper mt-1 text-[16px] italic">
+            {blocker.apply.problemLabel}
+          </p>
+          <p className="mt-2 text-[14px] leading-6">{blocker.apply.prompt}</p>
           <div className="mt-3 space-y-2">
-            {blocker.choices.map((choice) => {
+            {blocker.apply.choices.map((choice) => {
               const selected = picked === choice.id;
               const show = status !== "idle" && selected;
               const ok = show && choice.correct;
@@ -105,11 +111,13 @@ export function ReentryCard({
             })}
           </div>
           {status === "wrong" ? (
-            <p className="mt-3 text-[13px] leading-5 text-pen">{blocker.ifWrong}</p>
+            <p className="mt-3 text-[13px] leading-5 text-pen">
+              {blocker.apply.ifWrong}
+            </p>
           ) : null}
           {status === "right" ? (
             <p className="mt-3 text-[13px] leading-5 text-resolved">
-              That mark is defined on this page.
+              That import is defined. Use it on problem 2.
             </p>
           ) : null}
         </div>
