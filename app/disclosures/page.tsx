@@ -52,13 +52,13 @@ export default function Disclosures() {
         </h2>
         <ul className="mt-3 list-disc space-y-2 pl-5">
           <li>
-            Fully built, no model: `/` is the tool. Load Algebra 2 or Physics,
-            paste a page, or upload a photo / PDF / Word file. Reading happens
-            in the browser. Nothing is sent to a Relink server.
+            Fully built, no model: `/` (also `/demo`, `/lena`) is the judge
+            path — Lena’s worksheet, apply-to-problem-2, write the next line.
           </li>
           <li>
-            Fully built, no model: `/demo` (also `/lena`) is the hackathon demo —
-            Lena’s worksheet, apply-to-problem-2, write the next line.
+            Fully built, no model: `/open` is the tool. Load Algebra 2, Physics,
+            or Calculus; paste; or upload a photo / PDF / Word file. Reading
+            stays in the browser.
           </li>
           <li>
             `/api/diagnose` exists in source for an optional hosted model. It is
