@@ -6,8 +6,13 @@ Deadline: Aug 21, 2026 @ 11:45pm PDT.
 
 https://ethaenall.github.io/relink/
 
-No setup, no install, no credentials.  
-Sit with Lena: https://ethaenall.github.io/relink/lena/
+No setup, no install, no credentials.
+
+Product surface: https://ethaenall.github.io/relink/paste/  
+Paste tonight’s page. Relink names undefined imports only. On GitHub Pages there is no model; sample pages still load.
+
+Judge offline (cannot fail): https://ethaenall.github.io/relink/lena/  
+Algebra 2 resource, no model.
 
 ## Item 02 — GitHub
 
@@ -27,11 +32,15 @@ Also reachable from the demo header.
 
 **Relink** — tonight’s page has undefined references.
 
-Lena Park, 16, missed nine days of Algebra 2. Worksheet 4.3 treats `(b/2)²`, `√(−1)`, and `i` as already in her hands. You tap the rust wave. Relink names only those imports, makes you use the move on problem 2, and then you write the next line. It never does the homework.
+Relink is a linker. Paste tonight’s page. It names only the undefined imports. It never does the remaining homework — no restart of the unit, no finished answers.
 
-Built by a student who has sat in class unable to parse the board. No account. No chat. No model on the judge path.
+Sample pages are resources to try, not a scripted presentation: Algebra 2 / Lena Park (first night back; `(b/2)²`, `√(−1)`, `i` treated as already in her hands) and Physics / Priya Shah (`μ_s`, “on the verge”). On GitHub Pages there is no model. Load a sample, or open the offline Algebra 2 resource that cannot fail. Tap the rust mark. Apply the import on the unfinished problem. Write the next line. Relink does not write it.
+
+Built by a student who has sat in class unable to parse the board. No account. No chat.
 
 Live demo: https://ethaenall.github.io/relink/  
+Paste: https://ethaenall.github.io/relink/paste/  
+Judge offline: https://ethaenall.github.io/relink/lena/  
 One pager: https://ethaenall.github.io/relink/one-pager/  
 Repo: https://github.com/ethaenall/relink
 
