@@ -1,36 +1,53 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
 import type { Seed } from "@/lib/types";
 import { samples } from "@/lib/samples";
 import { localDiagnose } from "@/lib/kernel/diagnose";
 import { seedFromPaste } from "@/lib/fromPaste";
+import { matchSamplePage, textFromFile } from "@/lib/readUpload";
 import { RelinkSession } from "@/components/RelinkSession";
 
 export function ToolApp() {
   const [text, setText] = useState("");
   const [sampleId, setSampleId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [status, setStatus] = useState<string | null>(null);
   const [seed, setSeed] = useState<Seed | null>(null);
+  const fileRef = useRef<HTMLInputElement>(null);
+
+  function openSeed(next: Seed) {
+    setError(null);
+    setStatus(null);
+    setSeed(next);
+  }
 
   function loadSample(id: string) {
     const sample = samples.find((s) => s.id === id);
     if (!sample) return;
     setSampleId(id);
     setText(sample.page);
-    setError(null);
-    setSeed(sample.seed);
+    openSeed(sample.seed);
   }
 
-  function runPage() {
+  function runPage(raw = text) {
     setError(null);
     const sample = samples.find((s) => s.id === sampleId);
-    if (sample && text.trim() === sample.page.trim()) {
-      setSeed(sample.seed);
+    if (sample && raw.trim() === sample.page.trim()) {
+      openSeed(sample.seed);
       return;
     }
-    const built = seedFromPaste(text, localDiagnose(text));
+    const matched = matchSamplePage(raw);
+    if (matched) {
+      const hit = samples.find((s) => s.id === matched);
+      if (hit) {
+        setSampleId(hit.id);
+        openSeed(hit.seed);
+        return;
+      }
+    }
+    const built = seedFromPaste(raw, localDiagnose(raw));
     if (built.blockers.length === 0) {
       setSeed(null);
       setError(
@@ -39,7 +56,27 @@ export function ToolApp() {
       return;
     }
     setSampleId(null);
-    setSeed(built);
+    openSeed(built);
+  }
+
+  async function onFile(file: File | undefined) {
+    if (!file) return;
+    setError(null);
+    setStatus(
+      file.type.startsWith("image/")
+        ? "Reading the photo (first time may download OCR)…"
+        : "Reading the document…",
+    );
+    try {
+      const { text: extracted } = await textFromFile(file);
+      setText(extracted);
+      setSampleId(null);
+      setStatus(null);
+      runPage(extracted);
+    } catch (err) {
+      setStatus(null);
+      setError(err instanceof Error ? err.message : "Could not read that file.");
+    }
   }
 
   if (seed) {
@@ -80,11 +117,12 @@ export function ToolApp() {
           {": undefined references on tonight’s page"}
         </p>
         <h1 className="font-paper mt-4 text-[36px] leading-tight sm:text-[48px]">
-          Paste tonight’s page.
+          Open tonight’s page.
         </h1>
         <p className="mt-3 text-[15px] leading-7 text-cream/75">
           Relink names only the missing imports. It will not finish the homework.
-          Listed pages open immediately — no account, no model.
+          Listed pages, a paste, a photo, or a PDF — the file stays in this
+          browser.
         </p>
 
         <p className="mt-8 font-mono text-[11px] uppercase tracking-[0.16em] text-cream/50">
@@ -109,8 +147,32 @@ export function ToolApp() {
           ))}
         </ul>
 
+        <div className="mt-8 flex flex-wrap gap-3">
+          <button
+            type="button"
+            onClick={() => fileRef.current?.click()}
+            className="min-h-11 border border-cream/30 px-5 text-[14px] text-cream hover:border-cream"
+          >
+            Upload photo or document
+          </button>
+          <input
+            ref={fileRef}
+            type="file"
+            accept="image/*,.pdf,.docx,.txt,.md,.csv,.tex"
+            className="sr-only"
+            onChange={(e) => {
+              const file = e.target.files?.[0];
+              e.target.value = "";
+              void onFile(file);
+            }}
+          />
+        </div>
+        <p className="mt-2 font-mono text-[11px] leading-5 text-cream/40">
+          Photo, PDF, Word (.docx), or text. Nothing is uploaded to a server.
+        </p>
+
         <label className="mt-8 block font-mono text-[11px] uppercase tracking-[0.16em] text-cream/50">
-          Or paste your own
+          Or paste
           <textarea
             value={text}
             onChange={(e) => {
@@ -125,12 +187,15 @@ export function ToolApp() {
         </label>
         <button
           type="button"
-          onClick={runPage}
+          onClick={() => runPage()}
           disabled={text.trim().length < 20}
           className="mt-5 min-h-11 bg-paper px-5 text-[14px] text-ink disabled:opacity-40"
         >
           Name the undefined marks
         </button>
+        {status ? (
+          <p className="mt-6 text-[14px] leading-6 text-cream/70">{status}</p>
+        ) : null}
         {error ? (
           <p className="mt-6 text-[14px] leading-6 text-cream/80">{error}</p>
         ) : null}

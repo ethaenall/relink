@@ -13,21 +13,25 @@
     "check-normalize": "node scripts/check-normalize.cjs",
     "check-from-paste": "node scripts/check-from-paste.cjs",
     "check-kernel": "node scripts/check-kernel.cjs",
-    "test": "npm run check-copy && npm run check-seed && npm run check-loop && npm run check-normalize && npm run check-from-paste && npm run check-kernel"
+    "check-upload": "node scripts/check-upload.cjs",
+    "test": "npm run check-copy && npm run check-seed && npm run check-loop && npm run check-normalize && npm run check-from-paste && npm run check-kernel && npm run check-upload"
   },
   "dependencies": {
+    "mammoth": "^1.12.1",
+    "next": "14.2.18",
+    "pdfjs-dist": "^4.8.69",
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.2.18"
+    "tesseract.js": "^7.0.0"
   },
   "devDependencies": {
-    "typescript": "^5",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.18",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.18"
+    "typescript": "^5"
   }
 }

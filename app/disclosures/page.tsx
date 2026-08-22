@@ -54,8 +54,9 @@ export default function Disclosures() {
         </h2>
         <ul className="mt-3 list-disc space-y-2 pl-5">
           <li>
-            Fully built, no model: `/` is the tool. Load Algebra 2 or Physics, or
-            paste a page Relink already knows. The session starts locally.
+            Fully built, no model: `/` is the tool. Load Algebra 2 or Physics,
+            paste a page, or upload a photo / PDF / Word file. Reading happens
+            in the browser. Nothing is sent to a Relink server.
           </li>
           <li>
             Fully built, no model: `/demo` (also `/lena`) is the hackathon demo —

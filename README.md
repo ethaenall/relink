@@ -14,7 +14,7 @@ Tonight’s page has undefined references.
 ## Demo
 
 1. Judges: open https://ethaenall.github.io/relink/demo/ — Lena’s page, no login, no model.
-2. Tool: open https://ethaenall.github.io/relink/ — tap Algebra 2 or Physics. The session starts immediately.
+2. Tool: open https://ethaenall.github.io/relink/ — tap Algebra 2 or Physics, paste, or upload a photo/PDF/docx. The session starts in the browser.
 3. Or paste your own page. Known marks open the same linker locally.
 4. Tap rust waves. Apply on the unfinished problem. Write the next line. Relink does not write it.
 
