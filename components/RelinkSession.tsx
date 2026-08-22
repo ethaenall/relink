@@ -112,8 +112,12 @@ export function RelinkSession({ seed }: { seed: Seed }) {
             onOpen={setOpenId}
             highlightId={openId}
             footer={
-              complete ? (
+              complete && seed.nextLine.accept.length > 0 ? (
                 <NextLine spec={seed.nextLine} closing={seed.closing} />
+              ) : complete ? (
+                <p className="pl-8 font-paper text-[15px] italic leading-6 text-resolved">
+                  {seed.closing}
+                </p>
               ) : null
             }
           />

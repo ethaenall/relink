@@ -87,13 +87,17 @@ export default function OnePager() {
         </section>
 
         <ol className="mt-12 max-w-3xl space-y-3 font-paper text-[18px] leading-7">
-          <li>01 — Tap the rust wave.</li>
-          <li>02 — Apply the import on problem 2.</li>
+          <li>01 — Paste tonight’s page, or load a sample as a resource.</li>
+          <li>02 — Tap the rust wave. Apply the import on the unfinished problem.</li>
           <li>03 — Write the next line. Relink refuses to write it.</li>
         </ol>
 
         <p className="mt-10 font-mono text-[13px] leading-6">
           Demo{" "}
+          <Link href="/paste" className="underline decoration-pen">
+            /paste
+          </Link>
+          {"  ·  offline sample  "}
           <Link href="/lena" className="underline decoration-pen">
             /lena
           </Link>
@@ -101,7 +105,6 @@ export default function OnePager() {
           <Link href="/disclosures" className="underline decoration-pen">
             /disclosures
           </Link>
-          {"  ·  no model on the judge path"}
         </p>
       </div>
     </main>

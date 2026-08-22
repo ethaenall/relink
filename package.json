@@ -11,7 +11,8 @@
     "check-seed": "node scripts/check-seed.cjs",
     "check-loop": "node scripts/check-loop.cjs",
     "check-normalize": "node scripts/check-normalize.cjs",
-    "test": "npm run check-copy && npm run check-seed && npm run check-loop && npm run check-normalize"
+    "check-from-paste": "node scripts/check-from-paste.cjs",
+    "test": "npm run check-copy && npm run check-seed && npm run check-loop && npm run check-normalize && npm run check-from-paste"
   },
   "dependencies": {
     "react": "^18",

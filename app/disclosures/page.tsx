@@ -54,16 +54,18 @@ export default function Disclosures() {
         </h2>
         <ul className="mt-3 list-disc space-y-2 pl-5">
           <li>
-            Fully built: Lena’s linker on Worksheet 4.3 — tap a rust mark,
-            apply-to-problem-2, write the next line on the paper, one-pager.
+            Fully built, no model: Algebra 2 sample (`/lena`) — tap a rust mark,
+            apply-to-problem-2, write the next line on the paper.
           </li>
           <li>
-            /paste on GitHub Pages: static token highlighter only. Featherless
-            lives in source at app/api/diagnose and is stripped at Pages build.
-            Not the judge path.
+            `/paste`: load a sample page or paste your own. On a Node host with
+            FEATHERLESS_API_KEY, the model only names undefined imports and
+            returns the same linker. On GitHub Pages the API is stripped; paste
+            degrades to a local token highlighter plus the offline sample.
           </li>
           <li>
-            Not in scope: chat, gradebook, second named person, LMS.
+            Not in scope: chat tutor, gradebook, LMS, solving the remaining
+            problems.
           </li>
         </ul>
       </article>

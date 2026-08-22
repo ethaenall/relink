@@ -1,17 +1,21 @@
 import { NextResponse } from "next/server";
+import { seedFromPaste } from "@/lib/fromPaste";
 
 export const runtime = "nodejs";
 
-const SYSTEM = `You are Relink. A student missed class and is looking at TONIGHT'S page.
-Name the minimum undefined references: symbols or moves the page treats as already known that would make the next line unreadable.
+const SYSTEM = `You are Relink, a linker — not a tutor.
+A student missed class and is looking at TONIGHT'S PAGE.
+Name only the undefined references: symbols or moves the page treats as already known that would make the next unfinished line unreadable.
 
 Rules:
-- Return JSON only, matching the schema.
-- At most 4 blockers. Prefer 2 or 3.
-- Teach using the page's own notation. Do not restart the unit.
-- Never do the remaining homework problems.
+- Return JSON only.
+- At most 3 blockers. Prefer 2 or 3.
+- Teach in this page's own notation. Do not restart the unit.
+- Never solve remaining homework problems. Never write the student's answers.
 - Never say: you should already know, as you remember, you missed, catch up, behind, basic, obviously, go back to chapter.
-- If the page is not instructional text, return {"blockers":[],"error":"not a learning page"}.`;
+- apply.choices must include exactly one correct: true, and the check must be about the UNFINISHED problem on the page, not a quiz about the example.
+- nextLine.accept is the first move of the unfinished problem (several spellings). Relink will not fill it.
+- If the text is not a learning page, return {"blockers":[],"error":"not a learning page"}.`;
 
 export async function POST(req: Request) {
   const key = process.env.FEATHERLESS_API_KEY;
@@ -19,7 +23,7 @@ export async function POST(req: Request) {
     return NextResponse.json(
       {
         error:
-          "Paste-your-own needs FEATHERLESS_API_KEY on the server. The judge path is /lena — it is fully built and uses no model.",
+          "No model on this host. Load a sample page or sit with the offline Algebra 2 resource.",
       },
       { status: 501 },
     );
@@ -40,9 +44,10 @@ export async function POST(req: Request) {
     );
   }
 
-  const user = `TONIGHT'S PAGE:\n${page.slice(0, 8000)}\n\nLINE THAT IS A WALL:\n${(body.stuck ?? "not specified").slice(0, 500)}\n\nReturn {"blockers":[{"token":"","title":"","whyThisPage":"","teaching":["",""],"checkPrompt":"","choices":[{"id":"a","label":"","correct":false}],"marginNote":""}]}`;
+  const user = `TONIGHT'S PAGE:\n${page.slice(0, 8000)}\n\nLINE THAT IS A WALL:\n${(body.stuck ?? "not specified").slice(0, 500)}\n\nReturn {"blockers":[{"token":"","title":"","whyThisPage":"","teaching":["",""],"apply":{"problemLabel":"","prompt":"","choices":[{"id":"a","label":"","correct":false},{"id":"b","label":"","correct":true}],"ifWrong":""},"marginNote":""}],"nextLine":{"prompt":"","accept":[""],"rejectHint":""},"closing":""}`;
 
-  const model = process.env.FEATHERLESS_MODEL ?? "meta-llama/Meta-Llama-3.1-8B-Instruct";
+  const model =
+    process.env.FEATHERLESS_MODEL ?? "meta-llama/Meta-Llama-3.1-8B-Instruct";
 
   const res = await fetch("https://api.featherless.ai/v1/chat/completions", {
     method: "POST",
@@ -63,7 +68,7 @@ export async function POST(req: Request) {
   if (!res.ok) {
     const detail = await res.text();
     return NextResponse.json(
-      { error: "Featherless request failed.", detail: detail.slice(0, 400) },
+      { error: "Featherless request failed. Use a sample page.", detail: detail.slice(0, 400) },
       { status: 502 },
     );
   }
@@ -74,20 +79,30 @@ export async function POST(req: Request) {
   const end = content.lastIndexOf("}");
   if (start < 0 || end < 0) {
     return NextResponse.json(
-      { error: "Model did not return JSON. Use /lena." },
+      { error: "Model did not return JSON. Load a sample page." },
       { status: 502 },
     );
   }
 
   try {
     const parsed = JSON.parse(content.slice(start, end + 1));
-    const blockers = Array.isArray(parsed.blockers)
-      ? parsed.blockers.slice(0, 4)
-      : [];
-    return NextResponse.json({ blockers, model });
+    const seed = seedFromPaste(page, parsed);
+    if (seed.blockers.length === 0) {
+      return NextResponse.json(
+        {
+          error:
+            parsed.error === "not a learning page"
+              ? "That does not look like a learning page."
+              : "No undefined imports we can name. Try a sample page.",
+          model,
+        },
+        { status: 422 },
+      );
+    }
+    return NextResponse.json({ seed, model });
   } catch {
     return NextResponse.json(
-      { error: "Could not parse model JSON. Use /lena." },
+      { error: "Could not parse model JSON. Load a sample page." },
       { status: 502 },
     );
   }

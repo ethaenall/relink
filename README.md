@@ -14,10 +14,10 @@ Tonight’s page has undefined references.
 ## Demo
 
 1. Open https://ethaenall.github.io/relink/
-2. Read the landing (`error[E0425]`, Lena, the lockout).
-3. Click **Sit with tonight’s page**.
-4. Open each rust mark. Complete the **problem 2** check. Watch the margin define it.
-5. Write `x² + 8x = −20` on the paper. Relink does not write it. Problems 2 and 3 stay unsolved.
+2. Click **Paste tonight’s page**.
+3. Load a sample (Algebra 2 or Physics) — a resource, not a slideshow — or paste your own text.
+4. On GitHub Pages the model is off. Open the offline Algebra 2 resource, or run with `FEATHERLESS_API_KEY` on a Node host to name imports on any page.
+5. Tap rust waves. Apply on the unfinished problem. Write the next line. Relink does not write it.
 
 ## Stack
 
@@ -29,10 +29,10 @@ Tonight’s page has undefined references.
 
 | Path | Status |
 |------|--------|
-| Lena re-entry (`/lena`) | **Fully built.** Local data in `lib/lena.ts`. This is the product. |
+| Lena re-entry (`/lena`) | **Fully built.** Offline Algebra 2 sample. This is the no-fail path. |
+| `/paste` + samples | **Built.** Load a sample or paste any page. Model names imports only when `FEATHERLESS_API_KEY` is set on a Node host. |
 | Landing, one-pager, disclosures | **Fully built.** |
-| GitHub Pages demo | **Fully built** for every static route. No credentials. |
-| `/paste` | **Static token highlighter** on Pages. No model. |
+| GitHub Pages demo | **Fully built** for every static route. API route stripped. Paste degrades honestly. |
 | `/api/diagnose` | **Built in source.** Live on a Node host with `FEATHERLESS_API_KEY`. **Stripped** from GitHub Pages. |
 | Chat tutor, gradebook, LMS login | Not in scope. Intentionally absent. |
 

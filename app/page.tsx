@@ -65,23 +65,23 @@ export default function Home() {
               Return her to the same page.
             </p>
             <Link
-              href="/lena"
+              href="/paste"
               className="mt-8 inline-flex min-h-12 items-center bg-paper px-6 font-paper text-[18px] italic text-ink"
             >
-              Sit with tonight’s page →
+              Paste tonight’s page →
             </Link>
             <p className="mt-3 font-mono text-[11px] text-cream/40">
-              No account. No chat. No model on this path.
+              Samples to try. Relink will not do the homework.
             </p>
             <p className="mt-6 font-mono text-[11px] leading-5 text-cream/45">
               built by a student who has sat in class unable to parse the board.
             </p>
             <p className="mt-6">
               <Link
-                href="/paste"
+                href="/lena"
                 className="font-mono text-[11px] uppercase tracking-[0.14em] text-cream/35 hover:text-cream/70"
               >
-                Paste another page (static — no model)
+                Algebra 2 sample, offline
               </Link>
             </p>
           </aside>
