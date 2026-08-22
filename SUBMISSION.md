@@ -20,6 +20,18 @@ https://ethaenall.github.io/relink/one-pager/
 
 ---
 
+## Elevator pitch
+
+Lena Park is sixteen. Nine days of flu, and tonight's Algebra 2 worksheet uses three moves the teacher covered while she was gone — the page literally won't parse. Khan Academy restarts the whole unit. ChatGPT finishes the homework for her. Both leave her locked out of tomorrow's class.
+
+Relink works like a linker for broken code: it names exactly those three undefined references, teaches each one in the page's own notation, and makes you use it on problem 2 — then Lena writes the next line herself. It never does the homework. No account, no model, no lecture. The shortest path back into the room.
+
+We built it because one of us has been Lena.
+
+10-second cut: "A worksheet Lena can't parse because of nine sick days. Relink defines only the three missing references — never the homework — and she writes the next line."
+
+---
+
 ## Suggested Devpost blurb
 
 **Relink** — tonight’s page has undefined references.
