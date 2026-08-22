@@ -71,7 +71,7 @@ export default function Home() {
               Paste tonight’s page →
             </Link>
             <p className="mt-3 font-mono text-[11px] text-cream/40">
-              Samples to try. Relink will not do the homework.
+              Your page. Relink will not do the homework.
             </p>
             <p className="mt-6 font-mono text-[11px] leading-5 text-cream/45">
               built by a student who has sat in class unable to parse the board.
@@ -81,7 +81,7 @@ export default function Home() {
                 href="/lena"
                 className="font-mono text-[11px] uppercase tracking-[0.14em] text-cream/35 hover:text-cream/70"
               >
-                Algebra 2 sample, offline
+                Algebra 2 resource, offline
               </Link>
             </p>
           </aside>

@@ -41,7 +41,7 @@ export default function PastePage() {
       if (res.status === 404 || res.status === 405) {
         setNamed(namedTokens(text));
         setError(
-          "No model on this static host. Load a sample and open its offline resource, or run Relink on a Node host.",
+          "No model on this static host. Load a page from the list and open its offline resource, or run Relink on a Node host.",
         );
         return;
       }
@@ -54,7 +54,7 @@ export default function PastePage() {
       setSeed(data.seed);
     } catch {
       setNamed(namedTokens(text));
-      setError("Network error. Samples still open offline.");
+      setError("Network error. Listed pages still open offline.");
     } finally {
       setLoading(false);
     }
@@ -100,12 +100,11 @@ export default function PastePage() {
         </h1>
         <p className="mt-3 text-[15px] leading-7 text-cream/75">
           Relink names only the undefined imports. It will not restart the unit
-          or finish the homework. Samples below are pages to try — not a
-          scripted demo.
+          or finish the homework. Load a page from the list, or paste your own.
         </p>
 
         <p className="mt-8 font-mono text-[11px] uppercase tracking-[0.16em] text-cream/50">
-          Sample pages
+          Load a page
         </p>
         <ul className="mt-3 space-y-2">
           {samples.map((sample) => (
@@ -165,7 +164,7 @@ export default function PastePage() {
 
         {sampleId === "lena-4-3" ? (
           <p className="mt-4 font-mono text-[12px] leading-5 text-cream/50">
-            This sample also runs offline:{" "}
+            This page also runs offline:{" "}
             <Link href="/lena" className="underline decoration-pen">
               open Algebra 2 resource
             </Link>
@@ -178,8 +177,8 @@ export default function PastePage() {
 
         {named && named.length === 0 ? (
           <p className="mt-4 text-[14px] leading-6 text-cream/80">
-            No imports this host can name without a model. Try the Algebra 2
-            sample offline.
+            No imports this host can name without a model. Open the Algebra 2
+            resource offline.
           </p>
         ) : null}
 
