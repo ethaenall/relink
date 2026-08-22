@@ -174,7 +174,10 @@ export function seedFromPaste(page: string, result: DiagnoseResult): Seed {
     const kind: WorksheetLine["kind"] =
       i === 0 ? "title" : /^(\d+\.|problem\s+\d+)/i.test(text.trim()) ? "task" : "math";
     const marked = markParts(text, marks);
-    const marginFor = marked.find((p) => "blockerId" in p && p.blockerId)?.blockerId;
+    const hit = marked.find(
+      (p): p is { text: string; blockerId: string } => "blockerId" in p,
+    );
+    const marginFor = hit?.blockerId;
     lines.push({
       id: `ln-${i}`,
       kind,
