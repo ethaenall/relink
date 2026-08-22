@@ -3,6 +3,20 @@ import { seedFromPaste } from "@/lib/fromPaste";
 
 export const runtime = "nodejs";
 
+const cors = {
+  "Access-Control-Allow-Origin": "https://ethaenall.github.io",
+  "Access-Control-Allow-Methods": "POST, OPTIONS",
+  "Access-Control-Allow-Headers": "Content-Type",
+};
+
+function json(body: unknown, init?: { status?: number }) {
+  return NextResponse.json(body, { status: init?.status ?? 200, headers: cors });
+}
+
+export async function OPTIONS() {
+  return new NextResponse(null, { status: 204, headers: cors });
+}
+
 const SYSTEM = `You are Relink, a linker — not a tutor.
 A student missed class and is looking at TONIGHT'S PAGE.
 Name only the undefined references: symbols or moves the page treats as already known that would make the next unfinished line unreadable.
@@ -20,7 +34,7 @@ Rules:
 export async function POST(req: Request) {
   const key = process.env.FEATHERLESS_API_KEY;
   if (!key) {
-    return NextResponse.json(
+    return json(
       {
         error:
           "No model on this host. Load a sample page or sit with the offline Algebra 2 resource.",
@@ -33,12 +47,12 @@ export async function POST(req: Request) {
   try {
     body = await req.json();
   } catch {
-    return NextResponse.json({ error: "Invalid JSON." }, { status: 400 });
+    return json({ error: "Invalid JSON." }, { status: 400 });
   }
 
   const page = (body.page ?? "").trim();
   if (page.length < 20) {
-    return NextResponse.json(
+    return json(
       { error: "Paste a longer excerpt of tonight’s page." },
       { status: 400 },
     );
@@ -67,7 +81,7 @@ export async function POST(req: Request) {
 
   if (!res.ok) {
     const detail = await res.text();
-    return NextResponse.json(
+    return json(
       { error: "Featherless request failed. Use a sample page.", detail: detail.slice(0, 400) },
       { status: 502 },
     );
@@ -78,7 +92,7 @@ export async function POST(req: Request) {
   const start = content.indexOf("{");
   const end = content.lastIndexOf("}");
   if (start < 0 || end < 0) {
-    return NextResponse.json(
+    return json(
       { error: "Model did not return JSON. Load a sample page." },
       { status: 502 },
     );
@@ -88,7 +102,7 @@ export async function POST(req: Request) {
     const parsed = JSON.parse(content.slice(start, end + 1));
     const seed = seedFromPaste(page, parsed);
     if (seed.blockers.length === 0) {
-      return NextResponse.json(
+      return json(
         {
           error:
             parsed.error === "not a learning page"
@@ -99,9 +113,9 @@ export async function POST(req: Request) {
         { status: 422 },
       );
     }
-    return NextResponse.json({ seed, model });
+    return json({ seed, model });
   } catch {
-    return NextResponse.json(
+    return json(
       { error: "Could not parse model JSON. Load a sample page." },
       { status: 502 },
     );

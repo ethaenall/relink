@@ -87,7 +87,7 @@ export default function OnePager() {
         </section>
 
         <ol className="mt-12 max-w-3xl space-y-3 font-paper text-[18px] leading-7">
-          <li>01 — Paste tonight’s page, or load a sample as a resource.</li>
+          <li>01 — Open tonight’s page: load a listed one, paste, or upload.</li>
           <li>02 — Tap the rust wave. Apply the import on the unfinished problem.</li>
           <li>03 — Write the next line. Relink refuses to write it.</li>
         </ol>
