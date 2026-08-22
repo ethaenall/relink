@@ -24,7 +24,7 @@ const paper = Newsreader({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://ethaenall.github.io/relink"),
+  metadataBase: new URL("https://relink-two.vercel.app"),
   title: "Relink — tonight’s page has undefined references",
   description:
     "Lena Park, 16, first night back in Algebra 2. Relink names only the marks the worksheet assumes she has, then she writes the next line. No account. No model.",
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     title: "Relink — tonight’s page has undefined references",
     description:
       "error[E0425]: 3 undefined references. Lena writes the next line. Relink does not.",
-    url: "https://ethaenall.github.io/relink/",
+    url: "https://relink-two.vercel.app/",
     siteName: "Relink",
     type: "website",
   },

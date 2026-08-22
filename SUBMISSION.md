@@ -2,13 +2,15 @@
 
 Deadline: Aug 21, 2026 @ 11:45pm PDT.
 
-## Item 01 — Live demo
+## Item 01 — Live demo (primary)
 
-https://ethaenall.github.io/relink/
+https://relink-two.vercel.app/
 
-No setup, no install, no credentials, no model. Sit with Lena’s page. Tap the rust waves.
+No setup, no install, no credentials, no model on the judge path. Sit with Lena’s page. Tap the rust waves.
 
-Open your own page: https://ethaenall.github.io/relink/open/
+Mirror (GitHub Pages): https://ethaenall.github.io/relink/
+
+Open your own page: https://relink-two.vercel.app/open/
 
 ## Item 02 — GitHub
 
@@ -16,7 +18,7 @@ https://github.com/ethaenall/relink
 
 ## Item 03 — One pager
 
-https://ethaenall.github.io/relink/one-pager/
+https://relink-two.vercel.app/one-pager/
 
 ---
 
@@ -42,8 +44,8 @@ Relink names only those imports, makes you use each move on problem 2, then you 
 
 Built by a student who has sat in class unable to parse the board.
 
-Live demo: https://ethaenall.github.io/relink/  
-One pager: https://ethaenall.github.io/relink/one-pager/  
+Live demo: https://relink-two.vercel.app/  
+One pager: https://relink-two.vercel.app/one-pager/  
 Repo: https://github.com/ethaenall/relink
 
 ---
