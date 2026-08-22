@@ -16,26 +16,25 @@ const banned = [
   "everyone else",
 ];
 
-const file = fs.readFileSync(path.join(__dirname, "../lib/lena.ts"), "utf8");
-const fields = ["whyThisPage", "teaching", "apply", "ifWrong", "marginNote"];
-const hits = [];
-
-for (const phrase of banned) {
-  const lower = file.toLowerCase();
-  if (!lower.includes(phrase)) continue;
-  // Only fail if the phrase sits near pedagogical fields, not in the banned list itself.
-  const listIndex = file.indexOf("bannedCardPhrases");
+function scan(rel, cutAtList) {
+  const file = fs.readFileSync(path.join(__dirname, rel), "utf8");
+  const listIndex = cutAtList ? file.indexOf("bannedCardPhrases") : -1;
   const pedagogy = file.slice(0, listIndex === -1 ? file.length : listIndex).toLowerCase();
-  if (pedagogy.includes(phrase)) hits.push(phrase);
+  const hits = banned.filter((phrase) => pedagogy.includes(phrase));
+  if (hits.length) {
+    console.error("Shame phrasing in", rel, hits.join(", "));
+    process.exit(1);
+  }
 }
 
-if (hits.length) {
-  console.error("Shame phrasing in Lena cards:", hits.join(", "));
-  process.exit(1);
-}
+scan("../lib/lena.ts", true);
+scan("../lib/priya.ts", false);
+scan("../lib/kernel/cards.ts", false);
 
-if (!fields.every((f) => file.includes(f))) {
-  console.error("Seed is missing expected fields.");
+const lena = fs.readFileSync(path.join(__dirname, "../lib/lena.ts"), "utf8");
+const fields = ["whyThisPage", "teaching", "apply", "ifWrong", "marginNote"];
+if (!fields.every((f) => lena.includes(f))) {
+  console.error("Lena seed is missing expected fields.");
   process.exit(1);
 }
 

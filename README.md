@@ -2,8 +2,8 @@
 
 Tonight’s page has undefined references.
 
-**Live demo (no login):** https://ethaenall.github.io/relink/  
-**Judge path:** https://ethaenall.github.io/relink/lena/  
+**Tool (works offline):** https://ethaenall.github.io/relink/  
+**Hackathon demo:** https://ethaenall.github.io/relink/demo/  
 **One pager:** https://ethaenall.github.io/relink/one-pager/  
 **Repo:** https://github.com/ethaenall/relink
 
@@ -13,28 +13,29 @@ Tonight’s page has undefined references.
 
 ## Demo
 
-1. Open https://ethaenall.github.io/relink/
-2. Click **Paste tonight’s page**.
-3. Load a sample (Algebra 2 or Physics) — a resource, not a slideshow — or paste your own text.
-4. On GitHub Pages the model is off. Open the offline Algebra 2 resource, or run with `FEATHERLESS_API_KEY` on a Node host to name imports on any page.
-5. Tap rust waves. Apply on the unfinished problem. Write the next line. Relink does not write it.
+1. Judges: open https://ethaenall.github.io/relink/demo/ — Lena’s page, no login, no model.
+2. Tool: open https://ethaenall.github.io/relink/ — tap Algebra 2 or Physics. The session starts immediately.
+3. Or paste your own page. Known marks open the same linker locally.
+4. Tap rust waves. Apply on the unfinished problem. Write the next line. Relink does not write it.
 
 ## Stack
 
 - Next.js 14 (App Router) + TypeScript + Tailwind
 - Newsreader (worksheet) + Geist (chrome)
+- Local kernel + authored seeds. No API required.
 - Optional: Featherless AI for `/api/diagnose` on a Node host (stripped from GitHub Pages)
 
 ## Built vs mocked
 
 | Path | Status |
 |------|--------|
-| Lena re-entry (`/lena`) | **Fully built.** Offline Algebra 2 sample. This is the no-fail path. |
-| `/paste` + samples | **Built.** Load a sample or paste any page. Model names imports only when `FEATHERLESS_API_KEY` is set on a Node host. |
-| Landing, one-pager, disclosures | **Fully built.** |
-| GitHub Pages demo | **Fully built** for every static route. API route stripped. Paste degrades honestly. |
-| `/api/diagnose` | **Built in source.** Live on a Node host with `FEATHERLESS_API_KEY`. **Stripped** from GitHub Pages. |
-| Chat tutor, gradebook, LMS login | Not in scope. Intentionally absent. |
+| `/` tool | **Fully built.** Load a page or paste. Local. No credentials. |
+| `/demo` and `/lena` | **Fully built.** Offline Algebra 2 demo. |
+| Physics sample | **Fully built.** Local seed `lib/priya.ts`. |
+| One-pager, disclosures | **Fully built.** |
+| GitHub Pages | **Fully built** for every static route. |
+| `/api/diagnose` | **Built in source.** Optional. Not required. Stripped on Pages. |
+| Chat tutor, gradebook, LMS | Not in scope. |
 
 ## Setup
 
@@ -46,23 +47,17 @@ npm run dev
 
 Open http://localhost:3000
 
-Optional paste-with-model path (Node only):
-
-```bash
-cp .env.example .env.local
-# set FEATHERLESS_API_KEY
-```
-
 ## Tests
 
 ```bash
 npm test
 ```
 
-- `check-copy` — re-entry cards cannot use shame phrasing
-- `check-seed` — named person, three apply-to-#2 checks, next-line accept
+- `check-copy` — cards cannot use shame phrasing
+- `check-seed` — Lena and Priya apply-to-#2 + next-line
 - `check-loop` — ApplyCheck / NextLine types
-- `check-normalize` — `x² + 8x = −20` equals `x^2+8x=-20`; final answers rejected
+- `check-normalize` — unicode next-line accept
+- `check-from-paste` / `check-kernel` — samples name marks
 
 ## Disclosures
 
@@ -71,7 +66,7 @@ See `/disclosures`.
 **AI tools**
 
 - Hermes Agent (Grok 4.6 via xAI) — coding assistant during the build window
-- Featherless AI — optional runtime, not used on the judge path (`meta-llama/Meta-Llama-3.1-8B-Instruct` unless overridden)
+- Featherless AI — optional, not used on `/` or `/demo`
 
 **Datasets**
 
@@ -79,4 +74,4 @@ See `/disclosures`.
 
 ## Why this shape
 
-The prompt asks for one named person and one narrow barrier. Relink is not an AI tutor. It is a linker for a single homework page: undefined references in, the same page out, and she writes the next line.
+The prompt asks for one named person and one narrow barrier. The demo is that page. The tool is the same linker on any page Relink can name, including the Physics resource.

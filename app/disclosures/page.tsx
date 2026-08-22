@@ -54,14 +54,16 @@ export default function Disclosures() {
         </h2>
         <ul className="mt-3 list-disc space-y-2 pl-5">
           <li>
-            Fully built, no model: Algebra 2 sample (`/lena`) — tap a rust mark,
-            apply-to-problem-2, write the next line on the paper.
+            Fully built, no model: `/` is the tool. Load Algebra 2 or Physics, or
+            paste a page Relink already knows. The session starts locally.
           </li>
           <li>
-            `/paste`: load a sample page or paste your own. On a Node host with
-            FEATHERLESS_API_KEY, the model only names undefined imports and
-            returns the same linker. On GitHub Pages the API is stripped; paste
-            degrades to a local token highlighter plus the offline sample.
+            Fully built, no model: `/demo` (also `/lena`) is the hackathon demo —
+            Lena’s worksheet, apply-to-problem-2, write the next line.
+          </li>
+          <li>
+            `/api/diagnose` exists in source for an optional hosted model. It is
+            stripped on GitHub Pages and is not required.
           </li>
           <li>
             Not in scope: chat tutor, gradebook, LMS, solving the remaining

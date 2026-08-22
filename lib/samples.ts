@@ -1,9 +1,14 @@
+import type { Seed } from "./types";
+import { lena } from "./lena";
+import { priya } from "./priya";
+
 export type SamplePage = {
   id: string;
   label: string;
   blurb: string;
   stuck: string;
   page: string;
+  seed: Seed;
 };
 
 export const samples: SamplePage[] = [
@@ -12,6 +17,7 @@ export const samples: SamplePage[] = [
     label: "Algebra 2 · completing the square",
     blurb: "Lena Park, first night back. Three marks treated as given.",
     stuck: "add (b/2)²",
+    seed: lena,
     page: `Westfield High  ·  Algebra 2 / Period 3  ·  March 12  ·  Name: Lena Park
 Worksheet 4.3 — Completing the Square
 Use the same moves as the example. Show every step. Leave answers in exact form.
@@ -35,6 +41,7 @@ Now you try
     label: "Physics 1 · friction lab",
     blurb: "Priya Shah, six days out. The writeup treats μ_s as given.",
     stuck: "on the verge",
+    seed: priya,
     page: `Westfield High  ·  Physics 1 / Period 2  ·  Name: Priya Shah
 Lab 4 — Static friction
 A block sits on a horizontal desk. Draw the forces. Then find the largest push that does not start motion.

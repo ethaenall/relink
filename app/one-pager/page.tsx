@@ -94,12 +94,12 @@ export default function OnePager() {
 
         <p className="mt-10 font-mono text-[13px] leading-6">
           Demo{" "}
-          <Link href="/paste" className="underline decoration-pen">
-            /paste
+          <Link href="/demo" className="underline decoration-pen">
+            /demo
           </Link>
-          {"  ·  offline sample  "}
-          <Link href="/lena" className="underline decoration-pen">
-            /lena
+          {"  ·  tool  "}
+          <Link href="/" className="underline decoration-pen">
+            /
           </Link>
           {"  ·  "}
           <Link href="/disclosures" className="underline decoration-pen">

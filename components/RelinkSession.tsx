@@ -14,7 +14,13 @@ function formatElapsed(ms: number) {
   return `${m}:${String(r).padStart(2, "0")}`;
 }
 
-export function RelinkSession({ seed }: { seed: Seed }) {
+export function RelinkSession({
+  seed,
+  note,
+}: {
+  seed: Seed;
+  note?: string;
+}) {
   const [resolved, setResolved] = useState<Set<string>>(new Set());
   const [openId, setOpenId] = useState<string | null>(null);
   const [startedAt] = useState(() => Date.now());
@@ -44,6 +50,7 @@ export function RelinkSession({ seed }: { seed: Seed }) {
           Relink
         </Link>
         <p className="diag text-[12px] text-cream/70">
+          {note ? `${note} · ` : ""}
           {complete
             ? `note: all references defined  (${elapsed})`
             : `error[E0425]: ${remaining.length} undefined  (${elapsed})`}
