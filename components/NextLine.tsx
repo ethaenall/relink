@@ -22,10 +22,10 @@ export function NextLine({
   if (status === "right") {
     return (
       <div className="relative min-h-[32px] pl-8 pr-2">
-        <p className="lena-hand font-paper text-[19px] sm:text-[22px] italic leading-8">
+        <p className="lena-hand hand-write font-paper text-[19px] sm:text-[22px] italic leading-8">
           {raw.trim()}
         </p>
-        <p className="mt-2 text-[13px] leading-5 text-resolved">{closing}</p>
+        <p className="margin-ink mt-2 text-[13px] leading-5 text-resolved">{closing}</p>
       </div>
     );
   }

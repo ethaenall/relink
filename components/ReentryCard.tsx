@@ -38,7 +38,7 @@ export function ReentryCard({
       role="dialog"
       aria-modal="true"
       aria-labelledby="reentry-title"
-      className="flex h-full flex-col bg-paper text-ink paper-sheet"
+      className="card-in flex h-full flex-col bg-paper text-ink paper-sheet"
     >
       <div className="flex items-start justify-between gap-4 border-b border-rule px-5 py-4">
         <div>
@@ -97,14 +97,27 @@ export function ReentryCard({
                   type="button"
                   onClick={() => submit(choice.id)}
                   disabled={status === "right"}
-                  className={`block min-h-11 w-full border px-3 py-2 text-left text-[14px] leading-5 ${
+                  className={`choice-btn block min-h-11 w-full border px-3 py-2 text-left text-[14px] leading-5 ${
                     ok
-                      ? "border-resolved bg-resolved/10"
+                      ? "choice-good"
                       : bad
-                        ? "border-undef bg-undef/10"
+                        ? "choice-bad"
                         : "border-rule hover:border-ink"
                   }`}
                 >
+                  {ok ? (
+                    <span className="draw-check" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path
+                          d="M2.5 8.5 L6.5 12.5 L13.5 4.5"
+                          stroke="#1f5c4d"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </span>
+                  ) : null}
                   {choice.label}
                 </button>
               );
@@ -128,7 +141,7 @@ export function ReentryCard({
           type="button"
           disabled={status !== "right"}
           onClick={onResolved}
-          className="min-h-11 w-full bg-ink text-paper text-[14px] disabled:opacity-30"
+          className="return-btn min-h-11 w-full bg-ink text-paper text-[14px] disabled:opacity-30"
         >
           Return to the page
         </button>
