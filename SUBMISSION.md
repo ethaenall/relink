@@ -4,11 +4,11 @@ Deadline: Aug 21, 2026 @ 11:45pm PDT.
 
 ## Item 01 — Live demo
 
-https://ethaenall.github.io/relink/demo/
+https://ethaenall.github.io/relink/
 
-No setup, no install, no credentials, no model. Lena’s Algebra 2 page.
+No setup, no install, no credentials, no model. Sit with Lena’s page. Tap the rust waves.
 
-Tool (same program, any listed page or a paste): https://ethaenall.github.io/relink/
+Open your own page: https://ethaenall.github.io/relink/open/
 
 ## Item 02 — GitHub
 
@@ -24,14 +24,13 @@ https://ethaenall.github.io/relink/one-pager/
 
 **Relink** — tonight’s page has undefined references.
 
-Lena Park, 16, missed nine days of Algebra 2. Worksheet 4.3 treats `(b/2)²`, `√(−1)`, and `i` as already in her hands. The demo is that page: tap the rust wave, use the import on problem 2, write the next line. Relink never writes it.
+Lena Park, 16, missed nine days of Algebra 2. Worksheet 4.3 treats `(b/2)²`, `√(−1)`, and `i` as already in her hands. Khan restarts the unit. A chatbot finishes the homework. Both leave her locked out tomorrow.
 
-The rest of the program is the same linker. Load a Physics lab or paste a page. Known marks open immediately. No account. No model required.
+Relink names only those imports, makes you use each move on problem 2, then you write the next line. It never does the homework. No account. No model on the demo.
 
 Built by a student who has sat in class unable to parse the board.
 
-Demo: https://ethaenall.github.io/relink/demo/  
-Tool: https://ethaenall.github.io/relink/  
+Live demo: https://ethaenall.github.io/relink/  
 One pager: https://ethaenall.github.io/relink/one-pager/  
 Repo: https://github.com/ethaenall/relink
 
@@ -39,6 +38,6 @@ Repo: https://github.com/ethaenall/relink
 
 ## Disclosures to paste if Devpost asks
 
-AI tools: Hermes Agent (Grok 4.6 via xAI) for coding during the build window. Featherless AI is optional and not used on the demo or the tool.
+AI tools: Hermes Agent (Grok 4.6 via xAI) for coding during the build window. Groq/Featherless are optional, armed off, and not used on the judge path.
 
 Datasets: none.

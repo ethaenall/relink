@@ -196,3 +196,14 @@ body {
     animation: none;
   }
 }
+
+@media print {
+  html,
+  body {
+    background: #ece4d4;
+    color: #1c1915;
+  }
+  .desk::before {
+    display: none;
+  }
+}

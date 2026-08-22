@@ -87,19 +87,19 @@ export default function OnePager() {
         </section>
 
         <ol className="mt-12 max-w-3xl space-y-3 font-paper text-[18px] leading-7">
-          <li>01 — Open tonight’s page: load a listed one, paste, or upload.</li>
-          <li>02 — Tap the rust wave. Apply the import on the unfinished problem.</li>
+          <li>01 — Tap the rust wave.</li>
+          <li>02 — Apply the import on problem 2.</li>
           <li>03 — Write the next line. Relink refuses to write it.</li>
         </ol>
 
         <p className="mt-10 font-mono text-[13px] leading-6">
           Demo{" "}
-          <Link href="/demo" className="underline decoration-pen">
-            /demo
-          </Link>
-          {"  ·  tool  "}
           <Link href="/" className="underline decoration-pen">
-            /
+            sit with Lena
+          </Link>
+          {"  ·  "}
+          <Link href="/open" className="underline decoration-pen">
+            open your page
           </Link>
           {"  ·  "}
           <Link href="/disclosures" className="underline decoration-pen">

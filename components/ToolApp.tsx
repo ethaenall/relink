@@ -88,7 +88,7 @@ export function ToolApp() {
       <header className="flex items-center justify-between px-5 py-5 sm:px-8">
         <p className="font-mono text-[12px] uppercase tracking-[0.2em]">Relink</p>
         <nav className="flex gap-5 font-mono text-[12px] uppercase tracking-[0.14em] text-cream/60">
-          <Link href="/demo" className="hover:text-cream">
+          <Link href="/" className="hover:text-cream">
             Demo
           </Link>
           <Link href="/one-pager" className="hover:text-cream">

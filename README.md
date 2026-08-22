@@ -2,8 +2,8 @@
 
 Tonight’s page has undefined references.
 
-**Tool (works offline):** https://ethaenall.github.io/relink/  
-**Hackathon demo:** https://ethaenall.github.io/relink/demo/  
+**Live demo (no login):** https://ethaenall.github.io/relink/  
+**Open your page:** https://ethaenall.github.io/relink/open/  
 **One pager:** https://ethaenall.github.io/relink/one-pager/  
 **Repo:** https://github.com/ethaenall/relink
 
@@ -13,10 +13,9 @@ Tonight’s page has undefined references.
 
 ## Demo
 
-1. Judges: open https://ethaenall.github.io/relink/demo/ — Lena’s page, no login, no model.
-2. Tool: open https://ethaenall.github.io/relink/ — tap Algebra 2 or Physics, paste, or upload a photo/PDF/docx. The session starts in the browser.
-3. Or paste your own page. Known marks open the same linker locally.
-4. Tap rust waves. Apply on the unfinished problem. Write the next line. Relink does not write it.
+1. Judges: open https://ethaenall.github.io/relink/ — Lena’s page, no login, no model.
+2. Tap each rust wave. Apply the move on problem 2. Write `x² + 8x = −20`. Relink does not write it.
+3. Optional: https://ethaenall.github.io/relink/open/ — load Physics/Calculus, paste, or upload.
 
 ## Stack
 
@@ -29,8 +28,8 @@ See `HOSTING.md` to attach Featherless later. No keys live in this repo.
 
 | Path | Status |
 |------|--------|
-| `/` tool | **Fully built.** Load a page or paste. Local. No credentials. |
-| `/demo` and `/lena` | **Fully built.** Offline Algebra 2 demo. |
+| `/` and `/demo` `/lena` | **Fully built.** Offline Lena demo. This is the judge path. |
+| `/open` | **Fully built.** Load a page, paste, or upload. Local. |
 | Physics sample | **Fully built.** Local seed `lib/priya.ts`. |
 | One-pager, disclosures | **Fully built.** |
 | GitHub Pages | **Fully built** for every static route. |

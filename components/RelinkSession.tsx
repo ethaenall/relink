@@ -55,6 +55,12 @@ export function RelinkSession({
             ? `note: all references defined  (${elapsed})`
             : `error[E0425]: ${remaining.length} undefined  (${elapsed})`}
         </p>
+        <Link
+          href="/open"
+          className="font-mono text-[11px] uppercase tracking-[0.14em] text-cream/50 hover:text-cream"
+        >
+          Your page
+        </Link>
       </header>
 
       <div className="relative z-10 mx-auto grid max-w-6xl gap-8 px-4 pb-20 lg:grid-cols-[minmax(0,1fr)_340px] sm:px-8">

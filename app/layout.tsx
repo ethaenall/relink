@@ -24,9 +24,18 @@ const paper = Newsreader({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://ethaenall.github.io/relink"),
   title: "Relink — tonight’s page has undefined references",
   description:
-    "For Lena, 16, first night back in Algebra 2 after nine days of flu. Relink names the marks the worksheet assumes she already has, resolves only those, and returns her to the page.",
+    "Lena Park, 16, first night back in Algebra 2. Relink names only the marks the worksheet assumes she has, then she writes the next line. No account. No model.",
+  openGraph: {
+    title: "Relink — tonight’s page has undefined references",
+    description:
+      "error[E0425]: 3 undefined references. Lena writes the next line. Relink does not.",
+    url: "https://ethaenall.github.io/relink/",
+    siteName: "Relink",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
