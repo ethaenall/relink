@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { Fragment, type ReactNode } from "react";
 import type { InlinePart, Seed, WorksheetLine } from "@/lib/types";
 
 function Part({
@@ -117,17 +117,19 @@ export function Worksheet({
     <article className="paper-sheet paper-in px-6 py-9 sm:px-12 sm:py-12 text-ink">
       <div className="space-y-2">
         {seed.lines.map((line) => (
-          <Line
-            key={line.id}
-            line={line}
-            resolved={resolved}
-            interactive={interactive}
-            onOpen={onOpen}
-            blockers={seed.blockers}
-            highlightId={highlightId}
-          />
+          <Fragment key={line.id}>
+            <Line
+              line={line}
+              resolved={resolved}
+              interactive={interactive}
+              onOpen={onOpen}
+              blockers={seed.blockers}
+              highlightId={highlightId}
+            />
+            {footer && seed.nextLine.afterLineId === line.id ? footer : null}
+          </Fragment>
         ))}
-        {footer}
+        {footer && !seed.nextLine.afterLineId ? footer : null}
       </div>
     </article>
   );

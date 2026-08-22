@@ -35,6 +35,7 @@ export const lena: Seed = {
       "x²+8x=−20",
     ],
     rejectHint: "That is not the first move. Get x² + 8x alone.",
+    afterLineId: "p2",
   },
   lines: [
     {

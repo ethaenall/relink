@@ -26,6 +26,7 @@ export type NextLine = {
   prompt: string;
   accept: string[];
   rejectHint: string;
+  afterLineId?: string;
 };
 
 export type Blocker = {

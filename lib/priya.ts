@@ -33,6 +33,7 @@ export const priya: Seed = {
       "Fs = mu_s N",
     ],
     rejectHint: "On the verge, equality holds: F_s = μ_s N. N = 2.0 × 9.8.",
+    afterLineId: "p2",
   },
   lines: [
     {

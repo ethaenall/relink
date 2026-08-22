@@ -30,6 +30,10 @@ if (!src.includes("nextLine:")) {
   console.error("Seed missing nextLine");
   process.exit(1);
 }
+if (!src.includes('afterLineId: "p2"')) {
+  console.error("Lena nextLine must sit under problem 2");
+  process.exit(1);
+}
 if (!src.includes("x^2 + 8x = -20") && !src.includes("x² + 8x = −20")) {
   console.error("nextLine must accept the first move of problem 2");
   process.exit(1);
@@ -50,6 +54,10 @@ if ((priya.match(/apply: \{/g) || []).length !== 3) {
 }
 if (!priya.includes("nextLine:")) {
   console.error("Priya missing nextLine");
+  process.exit(1);
+}
+if (!priya.includes('afterLineId: "p2"')) {
+  console.error("Priya nextLine must sit under problem 2");
   process.exit(1);
 }
 if (!priya.includes("7.84")) {
