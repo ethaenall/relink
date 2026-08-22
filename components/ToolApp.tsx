@@ -4,59 +4,45 @@ import { useRef, useState } from "react";
 import Link from "next/link";
 import type { Seed } from "@/lib/types";
 import { samples } from "@/lib/samples";
-import { localDiagnose } from "@/lib/kernel/diagnose";
-import { seedFromPaste } from "@/lib/fromPaste";
-import { matchSamplePage, textFromFile } from "@/lib/readUpload";
+import { textFromFile } from "@/lib/readUpload";
+import { linkPage } from "@/lib/linkPage";
 import { RelinkSession } from "@/components/RelinkSession";
 
 export function ToolApp() {
   const [text, setText] = useState("");
-  const [sampleId, setSampleId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [status, setStatus] = useState<string | null>(null);
+  const [source, setSource] = useState<string | null>(null);
   const [seed, setSeed] = useState<Seed | null>(null);
+  const [busy, setBusy] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
-
-  function openSeed(next: Seed) {
-    setError(null);
-    setStatus(null);
-    setSeed(next);
-  }
 
   function loadSample(id: string) {
     const sample = samples.find((s) => s.id === id);
     if (!sample) return;
-    setSampleId(id);
     setText(sample.page);
-    openSeed(sample.seed);
+    setError(null);
+    setSource("sample");
+    setSeed(sample.seed);
   }
 
-  function runPage(raw = text) {
+  async function runPage(raw = text) {
+    setBusy(true);
     setError(null);
-    const sample = samples.find((s) => s.id === sampleId);
-    if (sample && raw.trim() === sample.page.trim()) {
-      openSeed(sample.seed);
-      return;
-    }
-    const matched = matchSamplePage(raw);
-    if (matched) {
-      const hit = samples.find((s) => s.id === matched);
-      if (hit) {
-        setSampleId(hit.id);
-        openSeed(hit.seed);
+    setStatus("Naming marks…");
+    try {
+      const result = await linkPage(raw);
+      setStatus(null);
+      if (!result.ok) {
+        setSeed(null);
+        setError(result.error);
         return;
       }
+      setSource(result.source);
+      setSeed(result.seed);
+    } finally {
+      setBusy(false);
     }
-    const built = seedFromPaste(raw, localDiagnose(raw));
-    if (built.blockers.length === 0) {
-      setSeed(null);
-      setError(
-        "No imports this copy of Relink can name yet. Load a listed page — those run offline.",
-      );
-      return;
-    }
-    setSampleId(null);
-    openSeed(built);
   }
 
   async function onFile(file: File | undefined) {
@@ -70,9 +56,7 @@ export function ToolApp() {
     try {
       const { text: extracted } = await textFromFile(file);
       setText(extracted);
-      setSampleId(null);
-      setStatus(null);
-      runPage(extracted);
+      await runPage(extracted);
     } catch (err) {
       setStatus(null);
       setError(err instanceof Error ? err.message : "Could not read that file.");
@@ -90,7 +74,9 @@ export function ToolApp() {
           >
             ← another page
           </button>
-          <p className="font-mono text-[11px] text-cream/40">linker · local</p>
+          <p className="font-mono text-[11px] text-cream/40">
+            linker · {source ?? "local"}
+          </p>
         </div>
         <RelinkSession key={seed.id} seed={seed} />
       </div>
@@ -121,8 +107,8 @@ export function ToolApp() {
         </h1>
         <p className="mt-3 text-[15px] leading-7 text-cream/75">
           Relink names only the missing imports. It will not finish the homework.
-          Listed pages, a paste, a photo, or a PDF — the file stays in this
-          browser.
+          Listed pages always run here. Any other page uses a model host if one
+          is configured — otherwise the local kernel.
         </p>
 
         <p className="mt-8 font-mono text-[11px] uppercase tracking-[0.16em] text-cream/50">
@@ -168,7 +154,7 @@ export function ToolApp() {
           />
         </div>
         <p className="mt-2 font-mono text-[11px] leading-5 text-cream/40">
-          Photo, PDF, Word (.docx), or text. Nothing is uploaded to a server.
+          Photo, PDF, Word (.docx), or text. The file stays in this browser.
         </p>
 
         <label className="mt-8 block font-mono text-[11px] uppercase tracking-[0.16em] text-cream/50">
@@ -177,7 +163,6 @@ export function ToolApp() {
             value={text}
             onChange={(e) => {
               setText(e.target.value);
-              setSampleId(null);
               setError(null);
             }}
             rows={10}
@@ -187,11 +172,11 @@ export function ToolApp() {
         </label>
         <button
           type="button"
-          onClick={() => runPage()}
-          disabled={text.trim().length < 20}
+          onClick={() => void runPage()}
+          disabled={busy || text.trim().length < 20}
           className="mt-5 min-h-11 bg-paper px-5 text-[14px] text-ink disabled:opacity-40"
         >
-          Name the undefined marks
+          {busy ? "Naming marks…" : "Name the undefined marks"}
         </button>
         {status ? (
           <p className="mt-6 text-[14px] leading-6 text-cream/70">{status}</p>

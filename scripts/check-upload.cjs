@@ -29,6 +29,7 @@ function matchSamplePage(text) {
       return "priya-friction";
     }
   }
+  if (folded.includes("lim") && folded.includes("dy/dx")) return "jordan-limits";
   return null;
 }
 

@@ -24,6 +24,7 @@ jobs:
       - run: npm run build
         env:
           STATIC_EXPORT: "1"
+          NEXT_PUBLIC_LINKER_API: ${{ vars.LINKER_API_URL }}
       - uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

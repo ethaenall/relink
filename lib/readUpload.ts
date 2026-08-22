@@ -12,7 +12,9 @@ export function classifyUpload(name: string, type: string): UploadKind {
   return "unknown";
 }
 
-export function matchSamplePage(text: string): "lena-4-3" | "priya-friction" | null {
+export function matchSamplePage(
+  text: string,
+): "lena-4-3" | "priya-friction" | "jordan-limits" | null {
   const folded = text.toLowerCase();
   if (folded.includes("(b/2)") && folded.includes("completing the square")) {
     return "lena-4-3";
@@ -29,6 +31,9 @@ export function matchSamplePage(text: string): "lena-4-3" | "priya-friction" | n
     ) {
       return "priya-friction";
     }
+  }
+  if (folded.includes("lim") && folded.includes("dy/dx")) {
+    return "jordan-limits";
   }
   return null;
 }

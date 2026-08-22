@@ -1,6 +1,8 @@
 import type { Seed } from "./types";
 import { lena } from "./lena";
 import { priya } from "./priya";
+import { seedFromPaste } from "./fromPaste";
+import { localDiagnose } from "./kernel/diagnose";
 
 export type SamplePage = {
   id: string;
@@ -60,3 +62,24 @@ Now you try
 3.  Same block, but the desk is wet and μ_s drops to 0.20.`,
   },
 ];
+
+const calcPage = `Westfield High  ·  Calculus / Period 1  ·  Name: Jordan Hale
+Worksheet 2.1 — Limits and a first derivative
+The packet treats lim and dy/dx as already named.
+
+Example
+lim_{x→2} (x² − 4)/(x − 2) = 4
+Then dy/dx of x² at x = 2 is 4.
+
+Now you try
+2.  lim_{x→3} (x² − 9)/(x − 3)
+3.  dy/dx of x² at x = 3`;
+
+samples.push({
+  id: "jordan-limits",
+  label: "Calculus · limits",
+  blurb: "Jordan Hale. The packet treats lim and dy/dx as given.",
+  stuck: "lim",
+  seed: seedFromPaste(calcPage, localDiagnose(calcPage)),
+  page: calcPage,
+});

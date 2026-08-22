@@ -23,7 +23,7 @@ Tonight’s page has undefined references.
 - Next.js 14 (App Router) + TypeScript + Tailwind
 - Newsreader (worksheet) + Geist (chrome)
 - Local kernel + authored seeds. No API required.
-- Optional: Featherless AI for `/api/diagnose` on a Node host (stripped from GitHub Pages)
+See `HOSTING.md` to attach Featherless later. No keys live in this repo.
 
 ## Built vs mocked
 
