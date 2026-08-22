@@ -27,14 +27,12 @@ export default function Disclosures() {
             models.
           </li>
           <li>
-            Featherless AI (OpenAI-compatible API) — optional runtime for a Node
-            host only. Default model:{" "}
-            <code className="font-mono text-[13px]">
-              meta-llama/Meta-Llama-3.1-8B-Instruct
-            </code>
-            . The GitHub Pages demo strips{" "}
-            <code className="font-mono text-[13px]">/api/diagnose</code>. The
-            judge path /lena does not call a model.
+            Groq (`llama-3.1-8b-instant`) or Featherless — optional runtime on a
+            Node host only. The key stays in server env. GitHub Pages strips{" "}
+            <code className="font-mono text-[13px]">/api/diagnose</code>.{" "}
+            <code className="font-mono text-[13px]">/demo</code> does not call a
+            model. Calls stay off until{" "}
+            <code className="font-mono text-[13px]">GROQ_ARMED=1</code>.
           </li>
         </ul>
 

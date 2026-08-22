@@ -14,7 +14,8 @@
     "check-from-paste": "node scripts/check-from-paste.cjs",
     "check-kernel": "node scripts/check-kernel.cjs",
     "check-upload": "node scripts/check-upload.cjs",
-    "test": "npm run check-copy && npm run check-seed && npm run check-loop && npm run check-normalize && npm run check-from-paste && npm run check-kernel && npm run check-upload"
+    "check-provider": "node scripts/check-provider.cjs",
+    "test": "npm run check-copy && npm run check-seed && npm run check-loop && npm run check-normalize && npm run check-from-paste && npm run check-kernel && npm run check-upload && npm run check-provider"
   },
   "dependencies": {
     "mammoth": "^1.12.1",

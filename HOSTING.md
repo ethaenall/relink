@@ -1,37 +1,44 @@
 # Hosting the optional model (no keys in this repo)
 
-The demo (`/demo`) and the listed sample pages never need a key.
+The demo (`/demo`) and listed sample pages never need a key.
 
-Any other homework page needs a linker host. Relink calls Featherless only
-from that host. The key never ships in the GitHub Pages bundle.
+Any other homework page needs a Node host. The browser never sees the key.
 
-## 1. Drop the key locally (do not commit)
+## Arming (so you can set up without spending)
 
-Create `relink/.env.local` (gitignored):
+`.env.local` can hold `GROQ_API_KEY` with `GROQ_ARMED=0`.
+`/api/diagnose` then returns 503 and **does not call Groq**.
+
+Set `GROQ_ARMED=1` only when you are ready to spend credits.
+
+## 1. Local (gitignored)
+
+`relink/.env.local`:
 
 ```
-FEATHERLESS_API_KEY=paste-here
-FEATHERLESS_MODEL=meta-llama/Meta-Llama-3.1-8B-Instruct
+GROQ_API_KEY=gsk_…
+GROQ_MODEL=llama-3.1-8b-instant
+GROQ_ARMED=0
 ```
 
-Then `npm run dev`. Paste or upload a page that is not a sample. The tool
-tries `/api/diagnose` first and falls back to the local kernel if the key
-is missing.
+`npm run dev`. Samples still run with no model.
 
-## 2. Vercel (so the live site can name any page)
+## 2. Vercel (key stays private)
 
-1. `npx vercel` in `relink/` (or Import the GitHub repo in the Vercel UI).
-2. Project Settings → Environment Variables:
-   - `FEATHERLESS_API_KEY` = the Featherless key
-   - `FEATHERLESS_MODEL` = `meta-llama/Meta-Llama-3.1-8B-Instruct` (optional)
-3. Deploy. Copy the URL, e.g. `https://relink-xxxx.vercel.app`.
-4. GitHub repo → Settings → Secrets and variables → Actions → Variables:
-   - `LINKER_API_URL` = `https://relink-xxxx.vercel.app/api/diagnose`
-5. Redeploy Pages (push an empty commit or rerun the workflow).
+1. Import `relink` or `npx vercel`.
+2. Env vars (Production + Preview):
+   - `GROQ_API_KEY` = the Groq key
+   - `GROQ_MODEL` = `llama-3.1-8b-instant`
+   - `GROQ_ARMED` = `0` until you want live any-page
+3. Deploy. Copy `https://….vercel.app`.
+4. GitHub → Settings → Secrets and variables → Actions → Variables:
+   - `LINKER_API_URL` = `https://….vercel.app/api/diagnose`
+5. Redeploy Pages.
 
-The Pages tool will POST to that URL. The Featherless key stays only on Vercel.
+CORS already allows `https://ethaenall.github.io`.
 
 ## Do not
 
-- Put the key in `README`, silkscreen, commits, or `NEXT_PUBLIC_*`.
+- Put the key in `README`, commits, or `NEXT_PUBLIC_*`.
 - Commit `.env` or `.env.local`.
+- Call `api.groq.com` from the browser.

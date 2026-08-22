@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { seedFromPaste } from "@/lib/fromPaste";
+import { isLinkerArmed, resolveProvider } from "@/lib/provider";
 
 export const runtime = "nodejs";
 
@@ -32,14 +33,26 @@ Rules:
 - If the text is not a learning page, return {"blockers":[],"error":"not a learning page"}.`;
 
 export async function POST(req: Request) {
-  const key = process.env.FEATHERLESS_API_KEY;
-  if (!key) {
+  const provider = resolveProvider();
+  if (!provider) {
     return json(
       {
         error:
           "No model on this host. Load a sample page or sit with the offline Algebra 2 resource.",
       },
       { status: 501 },
+    );
+  }
+
+  if (!isLinkerArmed()) {
+    return json(
+      {
+        error:
+          "Model is configured but armed off. No credits used. Set GROQ_ARMED=1 to enable.",
+        provider: provider.name,
+        armed: false,
+      },
+      { status: 503 },
     );
   }
 
@@ -60,17 +73,14 @@ export async function POST(req: Request) {
 
   const user = `TONIGHT'S PAGE:\n${page.slice(0, 8000)}\n\nLINE THAT IS A WALL:\n${(body.stuck ?? "not specified").slice(0, 500)}\n\nReturn {"blockers":[{"token":"","title":"","whyThisPage":"","teaching":["",""],"apply":{"problemLabel":"","prompt":"","choices":[{"id":"a","label":"","correct":false},{"id":"b","label":"","correct":true}],"ifWrong":""},"marginNote":""}],"nextLine":{"prompt":"","accept":[""],"rejectHint":""},"closing":""}`;
 
-  const model =
-    process.env.FEATHERLESS_MODEL ?? "meta-llama/Meta-Llama-3.1-8B-Instruct";
-
-  const res = await fetch("https://api.featherless.ai/v1/chat/completions", {
+  const res = await fetch(provider.url, {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${key}`,
+      Authorization: `Bearer ${provider.key}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      model,
+      model: provider.model,
       temperature: 0.2,
       messages: [
         { role: "system", content: SYSTEM },
@@ -82,7 +92,10 @@ export async function POST(req: Request) {
   if (!res.ok) {
     const detail = await res.text();
     return json(
-      { error: "Featherless request failed. Use a sample page.", detail: detail.slice(0, 400) },
+      {
+        error: `${provider.name} request failed. Use a sample page.`,
+        detail: detail.slice(0, 400),
+      },
       { status: 502 },
     );
   }
@@ -108,12 +121,12 @@ export async function POST(req: Request) {
             parsed.error === "not a learning page"
               ? "That does not look like a learning page."
               : "No undefined imports we can name. Try a sample page.",
-          model,
+          model: provider.model,
         },
         { status: 422 },
       );
     }
-    return json({ seed, model });
+    return json({ seed, model: provider.model, provider: provider.name });
   } catch {
     return json(
       { error: "Could not parse model JSON. Load a sample page." },
